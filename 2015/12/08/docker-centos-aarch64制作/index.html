@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>docker-centos-aarch64制作 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在官方的docker image中没有centos的image，所以我想自己做一个参考资料：https://wiki.centos.org/zh/Cloud/Docker
 1. 拷贝ami-creator代码库git clone https://github.com/katzj/ami-creator
 2. 编译安装ami-creator执行命令python setup.py build，发现提示">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="docker-centos-aarch64制作">
 <meta property="og:url" content="http://yoursite.com/2015/12/08/docker-centos-aarch64制作/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="在官方的docker image中没有centos的image，所以我想自己做一个参考资料：https://wiki.centos.org/zh/Cloud/Docker
 1. 拷贝ami-creator代码库git clone https://github.com/katzj/ami-creator
 2. 编译安装ami-creator执行命令python setup.py build，发现提示">
-<meta property="og:image" content="http://yoursite.com/./ami-creator.png">
-<meta property="og:updated_time" content="2015-12-08T15:06:51.000Z">
+<meta property="og:image" content="http://yoursite.com/images/ami-creator.png">
+<meta property="og:updated_time" content="2015-12-08T15:20:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="docker-centos-aarch64制作">
 <meta name="twitter:description" content="在官方的docker image中没有centos的image，所以我想自己做一个参考资料：https://wiki.centos.org/zh/Cloud/Docker
 1. 拷贝ami-creator代码库git clone https://github.com/katzj/ami-creator
 2. 编译安装ami-creator执行命令python setup.py build，发现提示">
@@ -204,7 +204,7 @@
   
     <div class="article-meta">
       <a href="/2015/12/08/docker-centos-aarch64制作/" class="article-date">
-  	<time datetime="2015-12-08T15:06:51.000Z" itemprop="datePublished">2015-12-08</time>
+  	<time datetime="2015-12-08T15:20:40.000Z" itemprop="datePublished">2015-12-08</time>
 </a>
     </div>
   
@@ -212,6 +212,24 @@
     
       <input type="hidden" class="isFancy" />
     
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      docker-centos-aarch64制作
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -229,7 +247,7 @@
 <p>但是目前python-imgcreate不支持aarch64架构，所以需要添加patch，修改/usr/lib/python2.7/site-packages/imgcreate/live.py内容如下:</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">elif arch.<span class="function"><span class="title">startswith</span><span class="params">(<span class="string">'arm'</span>)</span></span>:</span><br><span class="line"><span class="number">1037</span>     LiveImageCreator = LiveImageCreatorBase</span><br><span class="line"><span class="number">1038</span> elif arch.<span class="function"><span class="title">startswith</span><span class="params">(<span class="string">'aarch64'</span>)</span></span>:</span><br><span class="line"><span class="number">1039</span>     LiveImageCreator = LiveImageCreatorBase</span><br><span class="line"><span class="number">1040</span></span><br><span class="line"><span class="number">1041</span> <span class="keyword">else</span>:</span><br><span class="line"><span class="number">1042</span>     raise <span class="function"><span class="title">CreatorError</span><span class="params">(<span class="string">"Architecture not supported!"</span>)</span></span></span><br></pre></td></tr></table></figure>
 <p>此时ami-creator已经可以使用了，如下图所示：</p>
-<p><img src="./ami-creator.png" alt="ami-creator运行图"><br>下一步，根据ks文件来制作docker文件和镜像</p>
+<p><img src="/images/ami-creator.png" alt="ami-creator运行图"><br>下一步，根据ks文件来制作docker文件和镜像</p>
 <h4 id="3-__u514B_u9686_u4EE3_u7801_u5E93sig-cloud-instance-build_uFF0C_u5E76_u7F16_u8BD1_u51FAimage"><a href="#3-__u514B_u9686_u4EE3_u7801_u5E93sig-cloud-instance-build_uFF0C_u5E76_u7F16_u8BD1_u51FAimage" class="headerlink" title="3. 克隆代码库sig-cloud-instance-build，并编译出image"></a>3. 克隆代码库sig-cloud-instance-build，并编译出image</h4><p>git clone <a href="https://github.com/CentOS/sig-cloud-instance-build，克隆制作docker" target="_blank" rel="external">https://github.com/CentOS/sig-cloud-instance-build，克隆制作docker</a> image的ks文件，这个ks文件相比正常的ks文件，精简了体积，只保持系统到70M左右，果然很牛B</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ami-creater -c centos7-arm64.ks<span class="comment">//如果顺利会生成centos7-arm64-<span class="label">xxxx.img</span></span></span><br><span class="line">img2tar<span class="class">.sh</span> centos7-arm64-xxxx.img<span class="comment">//会在/tmp目录下生成一个tar.bz2的文件</span></span><br><span class="line">docker import /tmp/centos7-arm64-xxxx<span class="class">.img</span><span class="class">.tar</span><span class="class">.bz2</span> jefby/centos-arm64</span><br></pre></td></tr></table></figure>
 <h4 id="4-_docker_u64CD_u4F5C"><a href="#4-_docker_u64CD_u4F5C" class="headerlink" title="4. docker操作"></a>4. docker操作</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="operator"><span class="keyword">install</span> -y libguestfs-tools</span><br><span class="line">docker <span class="keyword">import</span> centos-<span class="number">7</span>-arm64.img.tar.bz2 jefby/centos-arm64</span><br><span class="line">docker run -<span class="keyword">i</span> -<span class="keyword">t</span> jefby/centos-arm64 /<span class="keyword">bin</span>/bash //获取到进入系统后的xxxx-<span class="keyword">id</span>，或者使用docker ps -<span class="keyword">l</span>方法找到image的xxxx-<span class="keyword">id</span></span><br><span class="line">docker <span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"init for centos arm64 images"</span> -a <span class="string">"jefby"</span> xxxx-<span class="keyword">id</span>//保存<span class="keyword">container</span>的修改到image</span><br><span class="line">docker push jefby/centos-arm64//推送新的image</span><br><span class="line">由于v1<span class="number">.8</span><span class="number">.0</span>和v1<span class="number">.8</span><span class="number">.1</span>之间可能有一些API发生了改变，所以需要重新编译docker </span><br><span class="line">git remote <span class="keyword">add</span> docker https://github.com/docker/docker/</span><br><span class="line">git pull docker</span><br><span class="line">git co v1<span class="number">.8</span><span class="number">.1</span></span><br><span class="line">cd docker</span><br><span class="line">./hack/make.sh dynbinary</span><br><span class="line">设置环境变量将心编译的docker放到前面去：</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">PATH</span>=<span class="keyword">new</span>-docker-<span class="keyword">path</span>:$<span class="keyword">PATH</span></span><br><span class="line">docker <span class="comment">--version查看版本</span></span></span><br></pre></td></tr></table></figure>
@@ -243,12 +261,12 @@
   
     
 <div class="copyright">
-  <p><span>本文标题:</span><a href="/2015/12/08/docker-centos-aarch64制作/"></a></p>
+  <p><span>本文标题:</span><a href="/2015/12/08/docker-centos-aarch64制作/">docker-centos-aarch64制作</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 jefby 的个人博客">jefby</a></p>
-  <p><span>发布时间:</span>2015年12月08日 - 23时06分</p>
-  <p><span>最后更新:</span>2015年12月08日 - 23时06分</p>
+  <p><span>发布时间:</span>2015年12月08日 - 23时20分</p>
+  <p><span>最后更新:</span>2015年12月08日 - 23时20分</p>
   <p>
-    <span>原始链接:</span><a class="post-url" href="/2015/12/08/docker-centos-aarch64制作/" title="">http://yoursite.com/2015/12/08/docker-centos-aarch64制作/</a>
+    <span>原始链接:</span><a class="post-url" href="/2015/12/08/docker-centos-aarch64制作/" title="docker-centos-aarch64制作">http://yoursite.com/2015/12/08/docker-centos-aarch64制作/</a>
     <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2015/12/08/docker-centos-aarch64制作/　　作者: jefby" title="点击复制文章链接">
         <i class="fa fa-clipboard"></i>
     </span>
@@ -265,7 +283,7 @@
   
   
     <div id="article-nav-older" class="article-nav-title">
-      <a href="/2015/12/07/hello-world/">
+      <a href="/2015/12/08/hello-world/">
         Hello World
       </a>
     </div>
@@ -350,7 +368,7 @@
   
     <div  class="post-nav-button">
     <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
-    <a href="/2015/12/07/hello-world/" title="下一篇: Hello World">
+    <a href="/2015/12/08/hello-world/" title="下一篇: Hello World">
     <i class="fa fa-angle-right"></i>
     </a>
     </div>
