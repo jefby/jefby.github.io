@@ -367,7 +367,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 23:30:01" itemprop="dateModified" datetime="2018-08-19T23:30:01+08:00">2018-08-19</time>
               
             
           </span>
@@ -545,7 +545,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:52:58" itemprop="dateModified" datetime="2018-08-19T22:52:58+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 23:30:01" itemprop="dateModified" datetime="2018-08-19T23:30:01+08:00">2018-08-19</time>
               
             
           </span>
@@ -732,7 +732,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:59:12" itemprop="dateModified" datetime="2018-08-19T22:59:12+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 23:30:01" itemprop="dateModified" datetime="2018-08-19T23:30:01+08:00">2018-08-19</time>
               
             
           </span>
@@ -838,6 +838,755 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/09/21/Linux用户空间和内核空间通信方式比较/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/09/21/Linux用户空间和内核空间通信方式比较/" itemprop="url">
+                  Linux用户空间和内核空间通信方式比较
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-09-21 06:46:22" itemprop="dateCreated datePublished" datetime="2014-09-21T06:46:22+08:00">2014-09-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-19 23:35:49" itemprop="dateModified" datetime="2018-08-19T23:35:49+08:00">2018-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>资料整理：</p>
+<ol>
+<li><p>论文，主要比较通信方式<br><a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5696027" target="_blank" rel="noopener">http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5696027</a></p>
+</li>
+<li><p>stackoverflow部分讨论</p>
+</li>
+</ol>
+<p><a href="http://stackoverflow.com/questions/8145943/communication-between-linux-kernel-and-user-space-program" target="_blank" rel="noopener">http://stackoverflow.com/questions/8145943/communication-between-linux-kernel-and-user-space-program</a></p>
+<ol start="3">
+<li>论文，主要讨论netlink</li>
+</ol>
+<p><a href="http://1984.lsi.us.es/~pablo/docs/spae.pdf" target="_blank" rel="noopener">http://1984.lsi.us.es/~pablo/docs/spae.pdf</a></p>
+<ol start="4">
+<li>介绍netlink的一篇博文，写的不错！</li>
+</ol>
+<p><a href="http://www.cnblogs.com/iceocean/articles/1594195.html" target="_blank" rel="noopener">http://www.cnblogs.com/iceocean/articles/1594195.html</a></p>
+<p>摘抄自4的博文：</p>
+<p>netlink 相对于系统调用，ioctl 以及 /proc 文件系统而言具有以下优点：</p>
+<p>1，为了使用 netlink，用户仅需要在 include/linux/netlink.h 中增加一个新类型的 netlink 协议定义即可， 如 #define NETLINK_MYTEST 17 然后，内核和用户态应用就可以立即通过 socket API 使用该 netlink 协议类型进行数据交换。但系统调用需要增加新的系统调用，ioctl 则需要增加设备或文件，那需要不少代码，proc 文件系统则需要在/proc下添加新的文件或目录，那将使本来就混乱的 /proc 更加混乱。</p>
+<ol start="2">
+<li>netlink是一种异步通信机制，在内核与用户态应用之间传递的消息保存在socket缓存队列中，发送消息只是把消息保存在接收者的socket的接收队列，而不需要等待接收者收到消息，但系统调用与 ioctl 则是同步通信机制，如果传递的数据太长，将影响调度粒度。</li>
+</ol>
+<p>3．使用 netlink 的内核部分可以采用模块的方式实现，使用 netlink 的应用部分和内核部分没有编译时依赖，但系统调用就有依赖，而且新的系统调用的实现必须静态地连接到内核中，它无法在模块中实现，使用新系统调用的应用在编译时需要依赖内核。</p>
+<p>4．netlink支持多播，内核模块或应用可以把消息多播给一个netlink组，属于该neilink 组的任何内核模块或应用都能接收到该消息，内核事件向用户态的通知机制就使用了这一特性，任何对内核事件感兴趣的应用都能收到该子系统发送的内核事件，在 后面的文章中将介绍这一机制的使用。</p>
+<p>5．内核可以使用 netlink 首先发起会话，但系统调用和 ioctl 只能由用户应用发起调用。</p>
+<p>6．netlink 使用标准的 socket API，因此很容易使用，但系统调用和 ioctl则需要专门的培训才能使用。</p>
+<pre><code>jefby
+</code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/" itemprop="url">
+                  arm linux内核源码中关于何时开启MMU的思考
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-08-25 06:00:53" itemprop="dateCreated datePublished" datetime="2014-08-25T06:00:53+08:00">2014-08-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-19 23:44:08" itemprop="dateModified" datetime="2018-08-19T23:44:08+08:00">2018-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天再次阅读arm linux内核源码，看MMU启动部分发现了一个问题，就是在常规的<strong>enable_mmu和</strong>turn_mmu_on部分我没有找到真正使能MMU标志的代码，但是它到底是什么时候将MMU的最低位置1的呢？？怀着这个疑问我在google上搜索了好多，但是对于这个问题的解答都是模凌两可，说的特别含糊，千篇一律，不能让人信服。</p>
+<p>__enable_mmu代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">__enable_mmu:</span><br><span class="line"></span><br><span class="line">#if defined(CONFIG_ALIGNMENT_TRAP) &amp;&amp; __LINUX_ARM_ARCH__ &lt; 6</span><br><span class="line"></span><br><span class="line">orr r0, r0, #CR_A</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_A</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_CPU_DCACHE_DISABLE</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_C</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_CPU_BPREDICT_DISABLE</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_Z</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_CPU_ICACHE_DISABLE</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_I</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifndef CONFIG_ARM_LPAE</span><br><span class="line"></span><br><span class="line">mov r5, #(domain_val(DOMAIN_USER, DOMAIN_MANAGER) | \</span><br><span class="line"></span><br><span class="line">domain_val(DOMAIN_KERNEL, DOMAIN_MANAGER) | \</span><br><span class="line"></span><br><span class="line">domain_val(DOMAIN_TABLE, DOMAIN_MANAGER) | \</span><br><span class="line"></span><br><span class="line">domain_val(DOMAIN_IO, DOMAIN_CLIENT))</span><br><span class="line"></span><br><span class="line">mcr p15, 0, r5, c3, c0, 0 @ load domain access register</span><br><span class="line"></span><br><span class="line">mcr p15, 0, r4, c2, c0, 0 @ load page table pointer</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">b __turn_mmu_on</span><br><span class="line"></span><br><span class="line">ENDPROC(__enable_mmu)</span><br></pre></td></tr></table></figure>
+<p>__turn_mmu_on源码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ENTRY(__turn_mmu_on)</span><br><span class="line"></span><br><span class="line">mov r0, r0</span><br><span class="line"></span><br><span class="line">instr_sync</span><br><span class="line"></span><br><span class="line">mcr p15, 0, r0, c1, c0, 0 @ write control reg(启用MMU)</span><br><span class="line"></span><br><span class="line">mrc p15, 0, r3, c0, c0, 0 @ read id reg</span><br><span class="line"></span><br><span class="line">instr_sync</span><br><span class="line"></span><br><span class="line">mov r3, r3</span><br><span class="line"></span><br><span class="line">mov r3, r13 @r3中转入最后要跳入的虚拟地址</span><br><span class="line"></span><br><span class="line">mov pc, r3 @跳转到__mmap_switched</span><br><span class="line"></span><br><span class="line">__turn_mmu_on_end:</span><br></pre></td></tr></table></figure>
+<p>在<strong>turn_mmu_on中将r0的值写入协处理CP15的C1寄存器中，但是r0的bit0什么时候被置位了呢？？</strong>enable_mmu没有置位，那就肯定是在__enable_mmu之前，搜索代码找到了答案：</p>
+<p>::arch/arm/mm/proc-v6.S</p>
+<p>其实在__v6_setup中设置的，有一段代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adr r5,v6_crval @将v6_crval的实际运行地址加载到r5处</span><br><span class="line">ldmia r5,&#123;r5,r6&#125;@将r5地址处的两个字内容保存到r5和r6处，根据v6_crval定义可知，值为clear和mmuset，mmmuset的最后一个比特值为1，也就是CR_M=1</span><br><span class="line">orr r0,r0,r6 @在此处将设置r0的bit0为1。随后在__turn_mmu_on中将MMU的值写入CP15的C1寄存器，真正使能MMU。</span><br></pre></td></tr></table></figure>
+<p>v6_crval的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.type v6_crval, #object</span><br><span class="line"></span><br><span class="line">v6_crval: crval clear=0x01e0fb7f, mmuset=0x00c0387d, ucset=0x00c0187c</span><br></pre></td></tr></table></figure>
+<p>其中crval是定义的宏，根据配置CONFIG_MMU不同存放不同的值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.macro crval, clear, mmuset, ucset</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_MMU</span><br><span class="line"></span><br><span class="line"> .word \clear</span><br><span class="line"> .word \mmuset</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line"> .word \clear</span><br><span class="line"> .word \ucset</span><br><span class="line"></span><br><span class="line">#endif                                                                                                         .endm</span><br></pre></td></tr></table></figure>
+<p>至此就非常清楚了，在<strong>v6_setup中设置了r0的bit0，然后调用</strong>enable_mmu和__turn_mmu_on真正开启MMU。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/05/23/wndr3800实现USB设备自动挂载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/05/23/wndr3800实现USB设备自动挂载/" itemprop="url">
+                  wndr3800 实现USB设备自动挂载
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-05-23 13:03:53" itemprop="dateCreated datePublished" datetime="2014-05-23T13:03:53+08:00">2014-05-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-20 00:00:27" itemprop="dateModified" datetime="2018-08-20T00:00:27+08:00">2018-08-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>WNDR3800路由器有USB2.0接口，但是插上USB存储设备后，并没有像在Linux下那样，在/dev目录下有诸如sda,sdb等设备名，所以也不能提供设备访问。那么需要重新编译内核以支持设备的自动探测和对NTFS，EXT4分区的支持。具体步骤如下：</p>
+<p>进入trunk目录下，运行make menuconfig配置内核：<br><a href="https://imgchr.com/i/PhJUKO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PhJUKO.md.png" alt="PhJUKO.md.png"></a></p>
+<ul>
+<li>配置BASE System =&gt; block mount选项，选中</li>
+<li>配置Kernel Modules =&gt; Block Devices =&gt; kmod-scsi-generic</li>
+<li><p>配置对文件系统的支持,NTFS（windows下常用）和EXT4（Linux下用）</p>
+<p>Kernel Modules =&gt; File System =&gt; kmod-fs-ext4<br>NTFS支持，需要安装软件包ntfs-3g<br>配置 Utilities=&gt; Filesystem =&gt;ntfs-3g</p>
+</li>
+<li><p>保存退出，重新编译内核，并烧写系统到路由器中，使用ssh连接到路由器上，再次插入U盘，可以看到内核提示信息，然后使用mount命令挂载：</p>
+</li>
+<li><p>测试对NTFS分区的支持<br>同样插入一个格式为NTFS分区的U盘或者移动硬盘<br><a href="https://imgchr.com/i/PhJdqe" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PhJdqe.md.png" alt="PhJdqe.md.png"></a></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/05/21/路由器WNDR3800-OpenWrt刷机记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/05/21/路由器WNDR3800-OpenWrt刷机记录/" itemprop="url">
+                  路由器wndr3800 OpenWrt刷写记录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-05-21 07:29:00" itemprop="dateCreated datePublished" datetime="2014-05-21T07:29:00+08:00">2014-05-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-20 00:01:15" itemprop="dateModified" datetime="2018-08-20T00:01:15+08:00">2018-08-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对OpenWrt慕名已久，最近有一个想法：实现一个简单的透明翻墙路由器，将校园网共享出来，然后在路由器上运行翻墙代理，实现手机等无线设备的零配置翻墙。网上搜了很多资料，最终决定购买网件的WNDR3800，这台路由器当时配置还可以，但现在看来有点弱，不过相信大品牌的做工和质量。主要的参数如下：</p>
+<blockquote>
+<p>CPU : AR7161,680MHZ<br>RAM: 128M DDR<br>FLASH: 16M</p>
+</blockquote>
+<p>支持双频段：2.4G+5GHZ</p>
+<p>首先是内存大，运行大程序应该无压力，另外是出厂FLASH就是16M，比国内某些路由厂商做的地道多了，可以放置更多的应用程序，同时openwrt系统也支持，适合新手使用。当然，如果老鸟的话可能真的是有点看不上。目前360，小米等鼓吹的AC频段，但似乎很少有设备能支持吧？大部分都是802.11n.</p>
+<p>在淘宝上选了一家价格和评分都不错的店家买了，入手价是269，再加上我用的顺丰快递（+10），总共下来是279，感觉还可以！等熟悉了openwrt后再买一些比较高端的货玩玩哈！^_^。刚开始还想要店家一些技术问题，发现店家似乎也不是很了解，就只好自己先上网搜搜了，幸好对Linux内核和驱动还算有点了解，下载源码，可以使用git或者svn版本控制管理工具，本文使用trunk版本，git的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$git clone git://git.openwrt.org/openwrt.git</span><br></pre></td></tr></table></figure>
+<p>barrier breaker版本命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$git clone git://git.openwrt.org/14.07/openwrt.git</span><br></pre></td></tr></table></figure>
+<p>SVN的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$svn co svn://svn.openwrt.org/openwrt/trunk/</span><br></pre></td></tr></table></figure>
+<p>barrier breaker版本命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$git clone svn://svn.openwrt.org/openwrt/branches/barrier_breaker</span><br></pre></td></tr></table></figure>
+<p>============================2014/12/3update========================</p>
+<p>然后make menuconfig，选择了CPU和路由器WNDR3800，如果需要界面的话进入到LuCI配置下，选择bootstrap风格（个人比较喜欢，很清新），然后选上develop configure模式（不用每次都从零编译），最后保存并退出。配置界面如下图所示：<br><img src="https://s1.ax1x.com/2018/08/19/PhJarD.png" alt="PhJarD.png"></p>
+<p>接着编译，运行命令：</p>
+<p><code>make -j8 V=s</code></p>
+<p>-j8表示启动多少个job（主要参考电脑配置，我电脑是4核的，就设置为8，一般是两倍），顺利的话应该会生成一个bin文件夹，在子目录ar71xx/中会看到openwrt-xxxx-wndr3800.squash.img文件，使用网线连接路由器和电脑，进入管理界面中，刷机，完成后重启，再次打开就是OpenWrt的系统啦！！如下图所示：<br><a href="https://imgchr.com/i/PhJ0VH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PhJ0VH.md.png" alt="PhJ0VH.md.png"></a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -885,7 +1634,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -923,7 +1672,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

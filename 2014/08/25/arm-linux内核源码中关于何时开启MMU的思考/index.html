@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="今天再次阅读arm linux内核源码，看MMU启动部分发现了一个问题，就是在常规的enable_mmu和turn_mmu_on部分我没有找到真正使能MMU标志的代码，但是它到底是什么时候将MMU的最低位置1的呢？？怀着这个疑问我在google上搜索了好多，但是对于这个问题的解答都是模凌两可，说的特别含糊，千篇一律，不能让人信服。 __enable_mmu代码如下： 123456789101112">
+<meta name="keywords" content="aarch64">
+<meta property="og:type" content="article">
+<meta property="og:title" content="arm linux内核源码中关于何时开启MMU的思考">
+<meta property="og:url" content="http://yoursite.com/2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/index.html">
+<meta property="og:site_name" content="jefby的小窝">
+<meta property="og:description" content="今天再次阅读arm linux内核源码，看MMU启动部分发现了一个问题，就是在常规的enable_mmu和turn_mmu_on部分我没有找到真正使能MMU标志的代码，但是它到底是什么时候将MMU的最低位置1的呢？？怀着这个疑问我在google上搜索了好多，但是对于这个问题的解答都是模凌两可，说的特别含糊，千篇一律，不能让人信服。 __enable_mmu代码如下： 123456789101112">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-19T15:44:08.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="arm linux内核源码中关于何时开启MMU的思考">
+<meta name="twitter:description" content="今天再次阅读arm linux内核源码，看MMU启动部分发现了一个问题，就是在常规的enable_mmu和turn_mmu_on部分我没有找到真正使能MMU标志的代码，但是它到底是什么时候将MMU的最低位置1的呢？？怀着这个疑问我在google上搜索了好多，但是对于这个问题的解答都是模凌两可，说的特别含糊，千篇一律，不能让人信服。 __enable_mmu代码如下： 123456789101112">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>arm linux内核源码中关于何时开启MMU的思考 | jefby的小窝</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jefby的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">arm linux内核源码中关于何时开启MMU的思考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-08-25 06:00:53" itemprop="dateCreated datePublished" datetime="2014-08-25T06:00:53+08:00">2014-08-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-19 23:44:08" itemprop="dateModified" datetime="2018-08-19T23:44:08+08:00">2018-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天再次阅读arm linux内核源码，看MMU启动部分发现了一个问题，就是在常规的<strong>enable_mmu和</strong>turn_mmu_on部分我没有找到真正使能MMU标志的代码，但是它到底是什么时候将MMU的最低位置1的呢？？怀着这个疑问我在google上搜索了好多，但是对于这个问题的解答都是模凌两可，说的特别含糊，千篇一律，不能让人信服。</p>
+<p>__enable_mmu代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">__enable_mmu:</span><br><span class="line"></span><br><span class="line">#if defined(CONFIG_ALIGNMENT_TRAP) &amp;&amp; __LINUX_ARM_ARCH__ &lt; 6</span><br><span class="line"></span><br><span class="line">orr r0, r0, #CR_A</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_A</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_CPU_DCACHE_DISABLE</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_C</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_CPU_BPREDICT_DISABLE</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_Z</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_CPU_ICACHE_DISABLE</span><br><span class="line"></span><br><span class="line">bic r0, r0, #CR_I</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifndef CONFIG_ARM_LPAE</span><br><span class="line"></span><br><span class="line">mov r5, #(domain_val(DOMAIN_USER, DOMAIN_MANAGER) | \</span><br><span class="line"></span><br><span class="line">domain_val(DOMAIN_KERNEL, DOMAIN_MANAGER) | \</span><br><span class="line"></span><br><span class="line">domain_val(DOMAIN_TABLE, DOMAIN_MANAGER) | \</span><br><span class="line"></span><br><span class="line">domain_val(DOMAIN_IO, DOMAIN_CLIENT))</span><br><span class="line"></span><br><span class="line">mcr p15, 0, r5, c3, c0, 0 @ load domain access register</span><br><span class="line"></span><br><span class="line">mcr p15, 0, r4, c2, c0, 0 @ load page table pointer</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">b __turn_mmu_on</span><br><span class="line"></span><br><span class="line">ENDPROC(__enable_mmu)</span><br></pre></td></tr></table></figure>
+<p>__turn_mmu_on源码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ENTRY(__turn_mmu_on)</span><br><span class="line"></span><br><span class="line">mov r0, r0</span><br><span class="line"></span><br><span class="line">instr_sync</span><br><span class="line"></span><br><span class="line">mcr p15, 0, r0, c1, c0, 0 @ write control reg(启用MMU)</span><br><span class="line"></span><br><span class="line">mrc p15, 0, r3, c0, c0, 0 @ read id reg</span><br><span class="line"></span><br><span class="line">instr_sync</span><br><span class="line"></span><br><span class="line">mov r3, r3</span><br><span class="line"></span><br><span class="line">mov r3, r13 @r3中转入最后要跳入的虚拟地址</span><br><span class="line"></span><br><span class="line">mov pc, r3 @跳转到__mmap_switched</span><br><span class="line"></span><br><span class="line">__turn_mmu_on_end:</span><br></pre></td></tr></table></figure>
+<p>在<strong>turn_mmu_on中将r0的值写入协处理CP15的C1寄存器中，但是r0的bit0什么时候被置位了呢？？</strong>enable_mmu没有置位，那就肯定是在__enable_mmu之前，搜索代码找到了答案：</p>
+<p>::arch/arm/mm/proc-v6.S</p>
+<p>其实在__v6_setup中设置的，有一段代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adr r5,v6_crval @将v6_crval的实际运行地址加载到r5处</span><br><span class="line">ldmia r5,&#123;r5,r6&#125;@将r5地址处的两个字内容保存到r5和r6处，根据v6_crval定义可知，值为clear和mmuset，mmmuset的最后一个比特值为1，也就是CR_M=1</span><br><span class="line">orr r0,r0,r6 @在此处将设置r0的bit0为1。随后在__turn_mmu_on中将MMU的值写入CP15的C1寄存器，真正使能MMU。</span><br></pre></td></tr></table></figure>
+<p>v6_crval的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.type v6_crval, #object</span><br><span class="line"></span><br><span class="line">v6_crval: crval clear=0x01e0fb7f, mmuset=0x00c0387d, ucset=0x00c0187c</span><br></pre></td></tr></table></figure>
+<p>其中crval是定义的宏，根据配置CONFIG_MMU不同存放不同的值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.macro crval, clear, mmuset, ucset</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_MMU</span><br><span class="line"></span><br><span class="line"> .word \clear</span><br><span class="line"> .word \mmuset</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line"> .word \clear</span><br><span class="line"> .word \ucset</span><br><span class="line"></span><br><span class="line">#endif                                                                                                         .endm</span><br></pre></td></tr></table></figure>
+<p>至此就非常清楚了，在<strong>v6_setup中设置了r0的bit0，然后调用</strong>enable_mmu和__turn_mmu_on真正开启MMU。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/aarch64/" rel="tag"># aarch64</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/23/wndr3800实现USB设备自动挂载/" rel="next" title="wndr3800 实现USB设备自动挂载">
+                <i class="fa fa-chevron-left"></i> wndr3800 实现USB设备自动挂载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/09/21/Linux用户空间和内核空间通信方式比较/" rel="prev" title="Linux用户空间和内核空间通信方式比较">
+                Linux用户空间和内核空间通信方式比较 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">jefby</p>
+              <p class="site-description motion-element" itemprop="description">记录点点滴滴</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jefby</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
