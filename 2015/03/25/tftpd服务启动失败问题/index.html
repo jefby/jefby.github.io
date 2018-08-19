@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.  1.编译X86_64的go binary123456cd /rootgit clone https://github.com/golang/gogit checkout go1.4.2cd src/./make.bash //先编译一个go x86_64mv /root">
-<meta name="keywords" content="aarch64">
+  <meta name="description" content="调试pxe的时候碰到了如下问题”dnsmasq TFTP directory /tftpd inaccessible: Permission denied”，记录下解决步骤: 背景在fedora21 server版本中配置dnsmasq作为tftp服务器，修改配置文件/etc/dnsmasq.conf，增加如下选项： 12enable-tftptftp-root=/tftpd 在根目录下创建文件夹">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ARM64从源码编译docker（v1.9.1) ">
-<meta property="og:url" content="http://yoursite.com/2015/11/30/ARM64从源码编译docker/index.html">
+<meta property="og:title" content="dnsmasq TFTP directory &#x2F;tftpd inaccessible: Permission denied">
+<meta property="og:url" content="http://yoursite.com/2015/03/25/tftpd服务启动失败问题/index.html">
 <meta property="og:site_name" content="jefby的小窝">
-<meta property="og:description" content="在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.  1.编译X86_64的go binary123456cd /rootgit clone https://github.com/golang/gogit checkout go1.4.2cd src/./make.bash //先编译一个go x86_64mv /root">
+<meta property="og:description" content="调试pxe的时候碰到了如下问题”dnsmasq TFTP directory /tftpd inaccessible: Permission denied”，记录下解决步骤: 背景在fedora21 server版本中配置dnsmasq作为tftp服务器，修改配置文件/etc/dnsmasq.conf，增加如下选项： 12enable-tftptftp-root=/tftpd 在根目录下创建文件夹">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-19T14:23:54.754Z">
+<meta property="og:updated_time" content="2018-08-19T14:59:12.489Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ARM64从源码编译docker（v1.9.1) ">
-<meta name="twitter:description" content="在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.  1.编译X86_64的go binary123456cd /rootgit clone https://github.com/golang/gogit checkout go1.4.2cd src/./make.bash //先编译一个go x86_64mv /root">
+<meta name="twitter:title" content="dnsmasq TFTP directory &#x2F;tftpd inaccessible: Permission denied">
+<meta name="twitter:description" content="调试pxe的时候碰到了如下问题”dnsmasq TFTP directory /tftpd inaccessible: Permission denied”，记录下解决步骤: 背景在fedora21 server版本中配置dnsmasq作为tftp服务器，修改配置文件/etc/dnsmasq.conf，增加如下选项： 12enable-tftptftp-root=/tftpd 在根目录下创建文件夹">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/11/30/ARM64从源码编译docker/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/03/25/tftpd服务启动失败问题/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>ARM64从源码编译docker（v1.9.1)  | jefby的小窝</title>
+  <title>dnsmasq TFTP directory /tftpd inaccessible: Permission denied | jefby的小窝</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/30/ARM64从源码编译docker/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/03/25/tftpd服务启动失败问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jefby">
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ARM64从源码编译docker（v1.9.1) 
+          <h1 class="post-title" itemprop="name headline">dnsmasq TFTP directory /tftpd inaccessible: Permission denied
               
             
           </h1>
@@ -347,7 +347,7 @@
                 
               
 
-              <time title="创建时间：2015-11-30 20:41:11" itemprop="dateCreated datePublished" datetime="2015-11-30T20:41:11+08:00">2015-11-30</time>
+              <time title="创建时间：2015-03-25 17:24:47" itemprop="dateCreated datePublished" datetime="2015-03-25T17:24:47+08:00">2015-03-25</time>
             
 
             
@@ -364,7 +364,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 22:59:12" itemprop="dateModified" datetime="2018-08-19T22:59:12+08:00">2018-08-19</time>
               
             
           </span>
@@ -381,7 +381,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -415,18 +415,22 @@
       
 
       
-        <blockquote>
-<p>在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.</p>
-</blockquote>
-<h3 id="1-编译X86-64的go-binary"><a href="#1-编译X86-64的go-binary" class="headerlink" title="1.编译X86_64的go binary"></a>1.编译X86_64的go binary</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /root</span><br><span class="line">git clone https://github.com/golang/go</span><br><span class="line">git checkout go1.4.2</span><br><span class="line">cd src/</span><br><span class="line">./make.bash //先编译一个go x86_64</span><br><span class="line">mv /root/go /root/go1.4//因为go1.5beta代码固定了go路径</span><br></pre></td></tr></table></figure>
-<h3 id="2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1"><a href="#2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1" class="headerlink" title="2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1"></a>2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd go/src/</span><br><span class="line">GOOS=linux GOARCH=arm64 ./bootstrap.bash</span><br></pre></td></tr></table></figure>
-<h3 id="3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块"><a href="#3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块" class="headerlink" title="3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块"></a>3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scp go-linux-arm64-bootstrap.tbz xxx //</span><br><span class="line">//下载go1.5.1代码</span><br><span class="line">git checkout go1.5.1</span><br><span class="line">cd go/src</span><br><span class="line">GOROOT=/path/to/go/bootstrap</span><br><span class="line">GOROOT_BOOTSTRAP=$GOROOT ./all.bash</span><br></pre></td></tr></table></figure>
-<h3 id="4-下载docker源码并编译"><a href="#4-下载docker源码并编译" class="headerlink" title="4. 下载docker源码并编译"></a>4. 下载docker源码并编译</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/jefby/docker.git</span><br><span class="line">git checkout jefby-v1.9.1 //找到最新的v1.9.1版本</span><br><span class="line">AUTO_GOPATH=1 ./hack/make.sh dynbinary //编译动态版本</span><br><span class="line">./hack/make.sh binary //静态版本，根据github docker社区的评论，似乎是用Redhat系列不能用静态版本的，因为默认使用了devicemapper，而不是ubuntu使用的aufs</span><br></pre></td></tr></table></figure>
-<h3 id="5-需要安装glibc-static"><a href="#5-需要安装glibc-static" class="headerlink" title="5. 需要安装glibc-static"></a>5. 需要安装glibc-static</h3><p>在docker v1.9.1版本中，hack/make.sh dynbinary中依然依赖libc.a和libpthread.a库，所以需要安装glibc-static rpm包，提供这两个库~</p>
-<h3 id="6-修改hack-make-sh增加set-x"><a href="#6-修改hack-make-sh增加set-x" class="headerlink" title="6. 修改hack/make.sh增加set -x"></a>6. 修改hack/make.sh增加set -x</h3><p>添加调试选项，进行debug，查看到底是什么地方出现错误</p>
-<h3 id="7-安装必须的一些pkg"><a href="#7-安装必须的一些pkg" class="headerlink" title="7.安装必须的一些pkg"></a>7.安装必须的一些pkg</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y device-mapper-devel</span><br><span class="line">yum install -y btrfs-progs-devel</span><br></pre></td></tr></table></figure>
-<h3 id="8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer"><a href="#8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer" class="headerlink" title="8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer"></a>8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer</h3><p>解决方法：<br>在/etc/hosts后面添加对docker网站的dns解析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">162.242.195.84 index.docker.io</span><br><span class="line">162.242.195.84 registry-1.docker.io</span><br></pre></td></tr></table></figure></p>
-
+        <p>调试pxe的时候碰到了如下问题”dnsmasq TFTP directory /tftpd inaccessible: Permission denied”，记录下解决步骤:</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在fedora21 server版本中配置dnsmasq作为tftp服务器，修改配置文件/etc/dnsmasq.conf，增加如下选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">enable-tftp</span><br><span class="line">tftp-root=/tftpd</span><br></pre></td></tr></table></figure>
+<p>在根目录下创建文件夹tftpd，修改属主为nobody:nobody，然后启动dnsmasq服务器，总是不能启动起来，错误信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Mar 25 16:54:35 localhost dnsmasq[1787]: TFTP directory /tftpd inaccessible: Permission denied</span><br><span class="line">Mar 25 16:54:35 localhost dnsmasq[1787]: FAILED to start up</span><br><span class="line">Mar 25 16:54:35 localhost systemd: dnsmasq.service: main process exited, code=exited, status=3/NOTIMPLEMENTED</span><br><span class="line">Mar 25 16:54:35 localhost systemd: Unit dnsmasq.service entered failed state.</span><br><span class="line">Mar 25 16:54:35 localhost systemd: dnsmasq.service failed.</span><br></pre></td></tr></table></figure>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>刚开始以为是tftpd文件夹的权限问题，就将它设置为777，重启仍然报错，最后思考了下会不会是SELinux所致，默认fedora安装完成后SELINUX的状态为enforcing，关闭SELINUX，重启OK，还真是这个原因！！！建议默认情况下关闭SELinux，方法有两种：</p>
+<ul>
+<li>暂时关闭</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>永久关闭</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/selinux/config修改enforcing为disable，重启服务器</span><br></pre></td></tr></table></figure>
+<p>dnsmasq启动OK的输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Mar 25 17:09:12 localhost dnsmasq[2131]: started, version 2.72 cachesize 150</span><br><span class="line">Mar 25 17:09:12 localhost dnsmasq[2131]: compile time options: IPv6 GNU-getopt DBus no-i18n IDN DHCP DHCPv6 no-Lua TFTP no-conntrack ipset auth DNSSEC loop-detect</span><br><span class="line">Mar 25 17:09:12 localhost dnsmasq-dhcp[2131]: DHCP, IP range 192.168.0.50 -- 192.168.0.150, lease time 12h</span><br><span class="line">Mar 25 17:09:12 localhost dnsmasq-tftp[2131]: TFTP root is /tftpd</span><br><span class="line">Mar 25 17:09:12 localhost dnsmasq[2131]: reading /etc/resolv.conf</span><br><span class="line">Mar 25 17:09:12 localhost dnsmasq[2131]: read /etc/hosts - 2 addresses</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -446,7 +450,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/aarch64/" rel="tag"># aarch64</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -459,18 +463,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/06/Applied-Micro-Mustang-支持kvm/" rel="next" title="Applied Micro Mustang 支持kvm ">
-                <i class="fa fa-chevron-left"></i> Applied Micro Mustang 支持kvm 
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/08/创建aarch64-docker镜像/" rel="prev" title="创建aarch64 docker">
-                创建aarch64 docker <i class="fa fa-chevron-right"></i>
+              <a href="/2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/" rel="prev" title="在PC-Linux下运行Qemu模拟AArch64硬件调试内核">
+                在PC-Linux下运行Qemu模拟AArch64硬件调试内核 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -615,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-编译X86-64的go-binary"><span class="nav-number">1.</span> <span class="nav-text">1.编译X86_64的go binary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1"><span class="nav-number">2.</span> <span class="nav-text">2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块"><span class="nav-number">3.</span> <span class="nav-text">3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-下载docker源码并编译"><span class="nav-number">4.</span> <span class="nav-text">4. 下载docker源码并编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-需要安装glibc-static"><span class="nav-number">5.</span> <span class="nav-text">5. 需要安装glibc-static</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-修改hack-make-sh增加set-x"><span class="nav-number">6.</span> <span class="nav-text">6. 修改hack/make.sh增加set -x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-安装必须的一些pkg"><span class="nav-number">7.</span> <span class="nav-text">7.安装必须的一些pkg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer"><span class="nav-number">8.</span> <span class="nav-text">8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li></ol></div>
             
 
           </div>

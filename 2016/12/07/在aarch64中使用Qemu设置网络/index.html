@@ -108,25 +108,28 @@
 
 
 
-  <meta name="description" content="在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.  1.编译X86_64的go binary123456cd /rootgit clone https://github.com/golang/gogit checkout go1.4.2cd src/./make.bash //先编译一个go x86_64mv /root">
+  <meta name="description" content="在上一篇文章《在aarch64主机中使用qemu启动虚机》，介绍了如何使用用户网络模式来启动虚拟机，但是这种模式有很多缺点，例如不能和其他虚机通信，不能使用ping测试通信等。所以在这篇中讲述如何使用tap模式来启动虚机。 该模型为私有虚拟局域网模型，只允许在本host机器上访问，不会影响到host机器网络. 1. 安装libvirt daemon1yum install -y libvirt-d">
 <meta name="keywords" content="aarch64">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ARM64从源码编译docker（v1.9.1) ">
-<meta property="og:url" content="http://yoursite.com/2015/11/30/ARM64从源码编译docker/index.html">
+<meta property="og:title" content="在aarch64主机中使用qemu设置网络">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/在aarch64中使用Qemu设置网络/index.html">
 <meta property="og:site_name" content="jefby的小窝">
-<meta property="og:description" content="在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.  1.编译X86_64的go binary123456cd /rootgit clone https://github.com/golang/gogit checkout go1.4.2cd src/./make.bash //先编译一个go x86_64mv /root">
+<meta property="og:description" content="在上一篇文章《在aarch64主机中使用qemu启动虚机》，介绍了如何使用用户网络模式来启动虚拟机，但是这种模式有很多缺点，例如不能和其他虚机通信，不能使用ping测试通信等。所以在这篇中讲述如何使用tap模式来启动虚机。 该模型为私有虚拟局域网模型，只允许在本host机器上访问，不会影响到host机器网络. 1. 安装libvirt daemon1yum install -y libvirt-d">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-19T14:23:54.754Z">
+<meta property="og:image" content="https://wiki.libvirt.org/images/d/d4/Host_with_a_virtual_network_switch_in_nat_mode_and_two_guests.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/19/Ph8QQU.md.png">
+<meta property="og:updated_time" content="2018-08-19T15:04:52.779Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ARM64从源码编译docker（v1.9.1) ">
-<meta name="twitter:description" content="在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.  1.编译X86_64的go binary123456cd /rootgit clone https://github.com/golang/gogit checkout go1.4.2cd src/./make.bash //先编译一个go x86_64mv /root">
+<meta name="twitter:title" content="在aarch64主机中使用qemu设置网络">
+<meta name="twitter:description" content="在上一篇文章《在aarch64主机中使用qemu启动虚机》，介绍了如何使用用户网络模式来启动虚拟机，但是这种模式有很多缺点，例如不能和其他虚机通信，不能使用ping测试通信等。所以在这篇中讲述如何使用tap模式来启动虚机。 该模型为私有虚拟局域网模型，只允许在本host机器上访问，不会影响到host机器网络. 1. 安装libvirt daemon1yum install -y libvirt-d">
+<meta name="twitter:image" content="https://wiki.libvirt.org/images/d/d4/Host_with_a_virtual_network_switch_in_nat_mode_and_two_guests.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/11/30/ARM64从源码编译docker/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/07/在aarch64中使用Qemu设置网络/"/>
 
 
 
@@ -136,7 +139,7 @@
   };
 </script>
 
-  <title>ARM64从源码编译docker（v1.9.1)  | jefby的小窝</title>
+  <title>在aarch64主机中使用qemu设置网络 | jefby的小窝</title>
   
 
 
@@ -305,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/30/ARM64从源码编译docker/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/07/在aarch64中使用Qemu设置网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jefby">
@@ -322,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ARM64从源码编译docker（v1.9.1) 
+          <h1 class="post-title" itemprop="name headline">在aarch64主机中使用qemu设置网络
               
             
           </h1>
@@ -347,7 +350,7 @@
                 
               
 
-              <time title="创建时间：2015-11-30 20:41:11" itemprop="dateCreated datePublished" datetime="2015-11-30T20:41:11+08:00">2015-11-30</time>
+              <time title="创建时间：2016-12-07 01:03:53" itemprop="dateCreated datePublished" datetime="2016-12-07T01:03:53+08:00">2016-12-07</time>
             
 
             
@@ -364,7 +367,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 23:04:52" itemprop="dateModified" datetime="2018-08-19T23:04:52+08:00">2018-08-19</time>
               
             
           </span>
@@ -415,17 +418,19 @@
       
 
       
-        <blockquote>
-<p>在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.</p>
-</blockquote>
-<h3 id="1-编译X86-64的go-binary"><a href="#1-编译X86-64的go-binary" class="headerlink" title="1.编译X86_64的go binary"></a>1.编译X86_64的go binary</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /root</span><br><span class="line">git clone https://github.com/golang/go</span><br><span class="line">git checkout go1.4.2</span><br><span class="line">cd src/</span><br><span class="line">./make.bash //先编译一个go x86_64</span><br><span class="line">mv /root/go /root/go1.4//因为go1.5beta代码固定了go路径</span><br></pre></td></tr></table></figure>
-<h3 id="2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1"><a href="#2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1" class="headerlink" title="2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1"></a>2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd go/src/</span><br><span class="line">GOOS=linux GOARCH=arm64 ./bootstrap.bash</span><br></pre></td></tr></table></figure>
-<h3 id="3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块"><a href="#3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块" class="headerlink" title="3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块"></a>3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scp go-linux-arm64-bootstrap.tbz xxx //</span><br><span class="line">//下载go1.5.1代码</span><br><span class="line">git checkout go1.5.1</span><br><span class="line">cd go/src</span><br><span class="line">GOROOT=/path/to/go/bootstrap</span><br><span class="line">GOROOT_BOOTSTRAP=$GOROOT ./all.bash</span><br></pre></td></tr></table></figure>
-<h3 id="4-下载docker源码并编译"><a href="#4-下载docker源码并编译" class="headerlink" title="4. 下载docker源码并编译"></a>4. 下载docker源码并编译</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/jefby/docker.git</span><br><span class="line">git checkout jefby-v1.9.1 //找到最新的v1.9.1版本</span><br><span class="line">AUTO_GOPATH=1 ./hack/make.sh dynbinary //编译动态版本</span><br><span class="line">./hack/make.sh binary //静态版本，根据github docker社区的评论，似乎是用Redhat系列不能用静态版本的，因为默认使用了devicemapper，而不是ubuntu使用的aufs</span><br></pre></td></tr></table></figure>
-<h3 id="5-需要安装glibc-static"><a href="#5-需要安装glibc-static" class="headerlink" title="5. 需要安装glibc-static"></a>5. 需要安装glibc-static</h3><p>在docker v1.9.1版本中，hack/make.sh dynbinary中依然依赖libc.a和libpthread.a库，所以需要安装glibc-static rpm包，提供这两个库~</p>
-<h3 id="6-修改hack-make-sh增加set-x"><a href="#6-修改hack-make-sh增加set-x" class="headerlink" title="6. 修改hack/make.sh增加set -x"></a>6. 修改hack/make.sh增加set -x</h3><p>添加调试选项，进行debug，查看到底是什么地方出现错误</p>
-<h3 id="7-安装必须的一些pkg"><a href="#7-安装必须的一些pkg" class="headerlink" title="7.安装必须的一些pkg"></a>7.安装必须的一些pkg</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y device-mapper-devel</span><br><span class="line">yum install -y btrfs-progs-devel</span><br></pre></td></tr></table></figure>
-<h3 id="8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer"><a href="#8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer" class="headerlink" title="8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer"></a>8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer</h3><p>解决方法：<br>在/etc/hosts后面添加对docker网站的dns解析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">162.242.195.84 index.docker.io</span><br><span class="line">162.242.195.84 registry-1.docker.io</span><br></pre></td></tr></table></figure></p>
+        <p>在上一篇文章《在aarch64主机中使用qemu启动虚机》，介绍了如何使用用户网络模式来启动虚拟机，但是这种模式有很多缺点，例如不能和其他虚机通信，不能使用ping测试通信等。所以在这篇中讲述如何使用tap模式来启动虚机。</p>
+<p>该模型为私有虚拟局域网模型，只允许在本host机器上访问，不会影响到host机器网络.<br><img src="https://wiki.libvirt.org/images/d/d4/Host_with_a_virtual_network_switch_in_nat_mode_and_two_guests.png" alt="tap网络"></p>
+<h4 id="1-安装libvirt-daemon"><a href="#1-安装libvirt-daemon" class="headerlink" title="1. 安装libvirt daemon"></a>1. 安装libvirt daemon</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libvirt-daemon</span><br></pre></td></tr></table></figure>
+<h4 id="2-启动libvirtd"><a href="#2-启动libvirtd" class="headerlink" title="2. 启动libvirtd"></a>2. 启动libvirtd</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service libvirtd start</span><br></pre></td></tr></table></figure>
+<h4 id="3-使用新脚本启动镜像"><a href="#3-使用新脚本启动镜像" class="headerlink" title="3. 使用新脚本启动镜像"></a>3. 使用新脚本启动镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">if [ $# -ne 1 ];then</span><br><span class="line">  echo &quot;Usage: $0 network-mode[user|tap]&quot;</span><br><span class="line">  echo &quot;e.g.: $0 user&quot;</span><br><span class="line">  echo &quot;      $0 tap&quot;</span><br><span class="line">  exit</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if [ $1 == &quot;user&quot; ];then</span><br><span class="line">  # User Networking Mode</span><br><span class="line">  qemu-system-aarch64 -smp 4 -m 8092 -M virt -bios QEMU_EFI.fd -nographic \</span><br><span class="line">       -device virtio-blk-device,drive=image \</span><br><span class="line">       -drive if=none,id=image,file=xenial-server-cloudimg-arm64-uefi1.qcow2,format=qcow2 \</span><br><span class="line">       -device virtio-blk-device,drive=cloud \</span><br><span class="line">       -drive if=none,id=cloud,file=cloud.img,format=raw \</span><br><span class="line">       -netdev user,id=user0,hostfwd=tcp::2222-:22 -device virtio-net-device,netdev=user0 \</span><br><span class="line">       -enable-kvm -cpu host</span><br><span class="line">elif [ $1 == &quot;tap&quot; ];then</span><br><span class="line">  # Tap Networking Mode [Private Virtual Network]</span><br><span class="line">  macaddress=52:54:00:4a:1e:d4</span><br><span class="line">  qemu-system-aarch64 -smp 4 -m 8092 -M virt -bios QEMU_EFI.fd -nographic \</span><br><span class="line">       -device virtio-blk-device,drive=image \</span><br><span class="line">       -drive if=none,id=image,file=xenial-server-cloudimg-arm64-uefi1.qcow2,format=qcow2 \</span><br><span class="line">       -device virtio-blk-device,drive=cloud \</span><br><span class="line">       -drive if=none,id=cloud,file=cloud.img,format=raw \</span><br><span class="line">       -device virtio-net-device,netdev=network0,mac=$macaddress \</span><br><span class="line">       -netdev tap,id=network0,ifname=tap0,script=qemu-ifup.sh,downscript=no  \</span><br><span class="line">       -enable-kvm -cpu host</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>依赖的qemu-ifup.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">set -x</span><br><span class="line"></span><br><span class="line">switch=virbr0</span><br><span class="line"></span><br><span class="line">if [ -n &quot;$1&quot; ];then</span><br><span class="line">        # tunctl -u `whoami` -t $1 (use ip tuntap instead!)</span><br><span class="line">        ip tuntap add $1 mode tap user `whoami`</span><br><span class="line">        ip link set $1 up</span><br><span class="line">        sleep 0.5s</span><br><span class="line">        # brctl addif $switch $1 (use ip link instead!)</span><br><span class="line">        ip link set $1 master $switch</span><br><span class="line">        exit 0</span><br><span class="line">else</span><br><span class="line">        echo &quot;Error: no interface specified&quot;</span><br><span class="line">        exit 1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>使用方法：</p>
+<p><code>./start_vm.sh tap</code></p>
+<h4 id="4-查看ip"><a href="#4-查看ip" class="headerlink" title="4. 查看ip"></a>4. 查看ip</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo virsh net-dhcp-leases default</span><br></pre></td></tr></table></figure>
+<p>结果如下图：</p>
+<p><a href="https://imgchr.com/i/Ph8QQU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/Ph8QQU.md.png" alt="Ph8QQU.md.png"></a></p>
+<p>然后使用ssh登录即可</p>
 
       
     </div>
@@ -459,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/06/Applied-Micro-Mustang-支持kvm/" rel="next" title="Applied Micro Mustang 支持kvm ">
-                <i class="fa fa-chevron-left"></i> Applied Micro Mustang 支持kvm 
+              <a href="/2016/11/25/在aarch64中使用Qemu启动虚拟机/" rel="next" title="在aarch64主机中使用Qemu启动虚拟机">
+                <i class="fa fa-chevron-left"></i> 在aarch64主机中使用Qemu启动虚拟机
               </a>
             
           </div>
@@ -469,8 +474,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/08/创建aarch64-docker镜像/" rel="prev" title="创建aarch64 docker">
-                创建aarch64 docker <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/19/PC创建并使用aarch64虚拟机/" rel="prev" title="PC创建并使用aarch64虚拟机">
+                PC创建并使用aarch64虚拟机 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -615,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-编译X86-64的go-binary"><span class="nav-number">1.</span> <span class="nav-text">1.编译X86_64的go binary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1"><span class="nav-number">2.</span> <span class="nav-text">2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块"><span class="nav-number">3.</span> <span class="nav-text">3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-下载docker源码并编译"><span class="nav-number">4.</span> <span class="nav-text">4. 下载docker源码并编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-需要安装glibc-static"><span class="nav-number">5.</span> <span class="nav-text">5. 需要安装glibc-static</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-修改hack-make-sh增加set-x"><span class="nav-number">6.</span> <span class="nav-text">6. 修改hack/make.sh增加set -x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-安装必须的一些pkg"><span class="nav-number">7.</span> <span class="nav-text">7.安装必须的一些pkg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer"><span class="nav-number">8.</span> <span class="nav-text">8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装libvirt-daemon"><span class="nav-number">1.</span> <span class="nav-text">1. 安装libvirt daemon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-启动libvirtd"><span class="nav-number">2.</span> <span class="nav-text">2. 启动libvirtd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-使用新脚本启动镜像"><span class="nav-number">3.</span> <span class="nav-text">3. 使用新脚本启动镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-查看ip"><span class="nav-number">4.</span> <span class="nav-text">4. 查看ip</span></a></li></ol></div>
             
 
           </div>

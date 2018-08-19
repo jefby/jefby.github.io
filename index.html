@@ -350,7 +350,7 @@
                 
               
 
-              <time title="创建时间：2018-08-19 21:06:40 / 修改时间：22:16:57" itemprop="dateCreated datePublished" datetime="2018-08-19T21:06:40+08:00">2018-08-19</time>
+              <time title="创建时间：2018-08-19 21:06:40 / 修改时间：22:23:54" itemprop="dateCreated datePublished" datetime="2018-08-19T21:06:40+08:00">2018-08-19</time>
             
 
             
@@ -518,7 +518,7 @@
                 
               
 
-              <time title="创建时间：2018-08-19 14:32:42 / 修改时间：20:56:16" itemprop="dateCreated datePublished" datetime="2018-08-19T14:32:42+08:00">2018-08-19</time>
+              <time title="创建时间：2018-08-19 14:32:42 / 修改时间：22:23:54" itemprop="dateCreated datePublished" datetime="2018-08-19T14:32:42+08:00">2018-08-19</time>
             
 
             
@@ -649,6 +649,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/07/在aarch64中使用Qemu设置网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/07/在aarch64中使用Qemu设置网络/" itemprop="url">
+                  在aarch64主机中使用qemu设置网络
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-07 01:03:53" itemprop="dateCreated datePublished" datetime="2016-12-07T01:03:53+08:00">2016-12-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-19 23:04:52" itemprop="dateModified" datetime="2018-08-19T23:04:52+08:00">2018-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在上一篇文章《在aarch64主机中使用qemu启动虚机》，介绍了如何使用用户网络模式来启动虚拟机，但是这种模式有很多缺点，例如不能和其他虚机通信，不能使用ping测试通信等。所以在这篇中讲述如何使用tap模式来启动虚机。</p>
+<p>该模型为私有虚拟局域网模型，只允许在本host机器上访问，不会影响到host机器网络.<br><img src="https://wiki.libvirt.org/images/d/d4/Host_with_a_virtual_network_switch_in_nat_mode_and_two_guests.png" alt="tap网络"></p>
+<h4 id="1-安装libvirt-daemon"><a href="#1-安装libvirt-daemon" class="headerlink" title="1. 安装libvirt daemon"></a>1. 安装libvirt daemon</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libvirt-daemon</span><br></pre></td></tr></table></figure>
+<h4 id="2-启动libvirtd"><a href="#2-启动libvirtd" class="headerlink" title="2. 启动libvirtd"></a>2. 启动libvirtd</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service libvirtd start</span><br></pre></td></tr></table></figure>
+<h4 id="3-使用新脚本启动镜像"><a href="#3-使用新脚本启动镜像" class="headerlink" title="3. 使用新脚本启动镜像"></a>3. 使用新脚本启动镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">if [ $# -ne 1 ];then</span><br><span class="line">  echo &quot;Usage: $0 network-mode[user|tap]&quot;</span><br><span class="line">  echo &quot;e.g.: $0 user&quot;</span><br><span class="line">  echo &quot;      $0 tap&quot;</span><br><span class="line">  exit</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if [ $1 == &quot;user&quot; ];then</span><br><span class="line">  # User Networking Mode</span><br><span class="line">  qemu-system-aarch64 -smp 4 -m 8092 -M virt -bios QEMU_EFI.fd -nographic \</span><br><span class="line">       -device virtio-blk-device,drive=image \</span><br><span class="line">       -drive if=none,id=image,file=xenial-server-cloudimg-arm64-uefi1.qcow2,format=qcow2 \</span><br><span class="line">       -device virtio-blk-device,drive=cloud \</span><br><span class="line">       -drive if=none,id=cloud,file=cloud.img,format=raw \</span><br><span class="line">       -netdev user,id=user0,hostfwd=tcp::2222-:22 -device virtio-net-device,netdev=user0 \</span><br><span class="line">       -enable-kvm -cpu host</span><br><span class="line">elif [ $1 == &quot;tap&quot; ];then</span><br><span class="line">  # Tap Networking Mode [Private Virtual Network]</span><br><span class="line">  macaddress=52:54:00:4a:1e:d4</span><br><span class="line">  qemu-system-aarch64 -smp 4 -m 8092 -M virt -bios QEMU_EFI.fd -nographic \</span><br><span class="line">       -device virtio-blk-device,drive=image \</span><br><span class="line">       -drive if=none,id=image,file=xenial-server-cloudimg-arm64-uefi1.qcow2,format=qcow2 \</span><br><span class="line">       -device virtio-blk-device,drive=cloud \</span><br><span class="line">       -drive if=none,id=cloud,file=cloud.img,format=raw \</span><br><span class="line">       -device virtio-net-device,netdev=network0,mac=$macaddress \</span><br><span class="line">       -netdev tap,id=network0,ifname=tap0,script=qemu-ifup.sh,downscript=no  \</span><br><span class="line">       -enable-kvm -cpu host</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>依赖的qemu-ifup.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">set -x</span><br><span class="line"></span><br><span class="line">switch=virbr0</span><br><span class="line"></span><br><span class="line">if [ -n &quot;$1&quot; ];then</span><br><span class="line">        # tunctl -u `whoami` -t $1 (use ip tuntap instead!)</span><br><span class="line">        ip tuntap add $1 mode tap user `whoami`</span><br><span class="line">        ip link set $1 up</span><br><span class="line">        sleep 0.5s</span><br><span class="line">        # brctl addif $switch $1 (use ip link instead!)</span><br><span class="line">        ip link set $1 master $switch</span><br><span class="line">        exit 0</span><br><span class="line">else</span><br><span class="line">        echo &quot;Error: no interface specified&quot;</span><br><span class="line">        exit 1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>使用方法：</p>
+<p><code>./start_vm.sh tap</code></p>
+<h4 id="4-查看ip"><a href="#4-查看ip" class="headerlink" title="4. 查看ip"></a>4. 查看ip</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo virsh net-dhcp-leases default</span><br></pre></td></tr></table></figure>
+<p>结果如下图：</p>
+<p><a href="https://imgchr.com/i/Ph8QQU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/Ph8QQU.md.png" alt="Ph8QQU.md.png"></a></p>
+<p>然后使用ssh登录即可</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/25/在aarch64中使用Qemu启动虚拟机/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -712,7 +894,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:07:42" itemprop="dateModified" datetime="2018-08-19T22:07:42+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
               
             
           </span>
@@ -900,7 +1082,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:05:32" itemprop="dateModified" datetime="2018-08-19T22:05:32+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
               
             
           </span>
@@ -1085,7 +1267,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 21:28:26" itemprop="dateModified" datetime="2018-08-19T21:28:26+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
               
             
           </span>
@@ -1268,7 +1450,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:03:49" itemprop="dateModified" datetime="2018-08-19T22:03:49+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
               
             
           </span>
@@ -1448,7 +1630,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 22:02:22" itemprop="dateModified" datetime="2018-08-19T22:02:22+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
               
             
           </span>
@@ -1611,7 +1793,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 21:19:28" itemprop="dateModified" datetime="2018-08-19T21:19:28+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 22:23:54" itemprop="dateModified" datetime="2018-08-19T22:23:54+08:00">2018-08-19</time>
               
             
           </span>
@@ -1759,7 +1941,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/04/08/为Fedora21-aarch64制作RPM包/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/19/Fedora22-for-arndale-octa-board/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jefby">
@@ -1778,8 +1960,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/08/为Fedora21-aarch64制作RPM包/" itemprop="url">
-                  为Fedora21 aarch64制作RPM包（tengine） 
+                <a class="post-title-link" href="/2015/07/19/Fedora22-for-arndale-octa-board/" itemprop="url">
+                  Fedora22 image for arndale octa board
                 </a>
               
             
@@ -1805,7 +1987,7 @@
                 
               
 
-              <time title="创建时间：2015-04-08 10:45:00" itemprop="dateCreated datePublished" datetime="2015-04-08T10:45:00+08:00">2015-04-08</time>
+              <time title="创建时间：2015-07-19 12:03:00" itemprop="dateCreated datePublished" datetime="2015-07-19T12:03:00+08:00">2015-07-19</time>
             
 
             
@@ -1822,7 +2004,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-19 21:19:28" itemprop="dateModified" datetime="2018-08-19T21:19:28+08:00">2018-08-19</time>
+                <time title="修改时间：2018-08-19 23:19:04" itemprop="dateModified" datetime="2018-08-19T23:19:04+08:00">2018-08-19</time>
               
             
           </span>
@@ -1839,7 +2021,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -1875,15 +2057,19 @@
       
         
           
-            <p>本文简单记录将tengine-2.10版本源码打为rpm包的步骤，此处是简单的封装了下二进制，没有做复杂的脚本配置和gpg校验等，待以后有时间继续研究。<br>1.安装必要包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$yum install -y gcc pcre-devel openssl-devel</span><br></pre></td></tr></table></figure></p>
-<p>2.创建tengine rpm构建目录，使用非root用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$su - jefby</span><br><span class="line">$mkdir -p tengine_rpm/&#123;BUILD,RPMS,SOURCES,SPECS,SRPMS&#125;</span><br></pre></td></tr></table></figure></p>
-<p>3.编写spec文件，将源码放置到SOURCES目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$unzip tengine-master.zip</span><br><span class="line">$mv tengine-master tengine-2.10</span><br><span class="line">$tar -cjvf tengine-2.10.tar.bz2 tengine-2.10</span><br><span class="line">$mv tengine-2.10.tar.bz2 SOURCES</span><br><span class="line">$vi SPECS/tengine.spec</span><br></pre></td></tr></table></figure></p>
-<p>tengine.spec文件详细内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"># This is a sample spec file for tengine</span><br><span class="line"></span><br><span class="line">%define _topdir         /home/jefby/tengine_rpm</span><br><span class="line">%define name            tengine</span><br><span class="line">%define release         2</span><br><span class="line">%define version         2.10</span><br><span class="line">%define buildroot       %&#123;_topdir&#125;/%&#123;name&#125;-%&#123;version&#125;-root</span><br><span class="line"></span><br><span class="line">BuildRoot:              %&#123;buildroot&#125;</span><br><span class="line">Summary:                TAOBAO Tengine</span><br><span class="line">License:                GPL</span><br><span class="line">Name:                   %&#123;name&#125;</span><br><span class="line">Version:                %&#123;version&#125;</span><br><span class="line">Release:                %&#123;release&#125;</span><br><span class="line">Source:                 %&#123;name&#125;-%&#123;version&#125;.tar.bz2</span><br><span class="line">Prefix:                 /usr/local</span><br><span class="line">Group:                  Development/Tools</span><br><span class="line">BuildRequires:          gcc,make</span><br><span class="line">Requires:               pcre,pcre-devel,openssl,openssl-devel,chkconfig &gt;= 1.1.1</span><br><span class="line"></span><br><span class="line">%description</span><br><span class="line">Tengine is the webserver based nginx for taobao website</span><br><span class="line"></span><br><span class="line">%prep #编译前准备，主要是解压缩源码，并进入压缩后的目录</span><br><span class="line">%setup -q</span><br><span class="line"></span><br><span class="line">%build #编译</span><br><span class="line">./configure --prefix=/opt/nginx</span><br><span class="line">make %&#123;?_smp_mflags&#125; #检查处理器核心数目，若为多核则使用多核编译</span><br><span class="line"></span><br><span class="line">%install #安装，如果不设置DESTDIR，默认安装到prefix指定的目录</span><br><span class="line">rm -rf %&#123;buildroot&#125;</span><br><span class="line">make install DESTDIR=%&#123;buildroot&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#%post  #rpm安装后执行的脚本</span><br><span class="line"></span><br><span class="line">#%preun #卸载前执行的脚本</span><br><span class="line"></span><br><span class="line">#%postun #卸载后执行的脚本</span><br><span class="line"></span><br><span class="line">%clean #清理，检查buildroot是否为根目录，如果不是直接删除</span><br><span class="line">[ %&#123;buildroot&#125; != &apos;/&apos; ] &amp;&amp; rm -rf %&#123;buildroot&#125;</span><br><span class="line"></span><br><span class="line">%files #打包到rpm的文件，因为prefix指定为/opt/nginx，此时将整个文件夹打包</span><br><span class="line">/opt/nginx</span><br><span class="line">%defattr(-,root,root)#设置属性</span><br></pre></td></tr></table></figure></p>
-<p>目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$tree .</span><br><span class="line">├── BUILD</span><br><span class="line">├── RPMS</span><br><span class="line">├── SOURCES</span><br><span class="line">│   └── tengine-2.10.tar.bz2</span><br><span class="line">├── SPECS</span><br><span class="line">│   └── tengine.spec</span><br><span class="line">└── SRPMS</span><br></pre></td></tr></table></figure></p>
-<p>说明：<br>    BUILD    源代码解压后的存放目录<br>    RPMS    制作完成后的RPM包存放目录，里面有与平台相关的子目录<br>    SOURCES 软件源码及补丁<br>    SPECS   SPEC文件存放目录<br>    SRMPS   存放SRMPS生成的目录<br>4.编译制作rpm包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$rpmbuild -v -ba --clean SPEC/tengine.spec</span><br><span class="line">其中-v表示Verbose，输出详细信息</span><br><span class="line">-bb：构建二进制RPM包</span><br><span class="line">-ba：构建二进制RPM和源码src.RPM包</span><br><span class="line">-bp：运行到pre结束</span><br><span class="line">-bc：执行到build结束</span><br><span class="line">-bi：运行到install结束</span><br><span class="line">-bl：检查有文件没包含</span><br><span class="line">一般使用bb或者ba</span><br><span class="line">--clean：</span><br><span class="line">Remove the build tree after the packages are made.</span><br></pre></td></tr></table></figure></p>
-<p>成功会在RPMS目录下生成<br>tengine-xxx.rpm和tengine-debuginfo-xxx.rpm包，在SRPMS目录下生成src.rpm包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├── BUILD</span><br><span class="line">├── RPMS</span><br><span class="line">│   └── aarch64</span><br><span class="line">│       ├── tengine-2.10-2.aarch64.rpm</span><br><span class="line">│       └── tengine-debuginfo-2.10-2.aarch64.rpm</span><br><span class="line">├── SOURCES</span><br><span class="line">│   └── tengine-2.10.tar.bz2</span><br><span class="line">├── SPECS</span><br><span class="line">│   └── tengine.spec</span><br><span class="line">└── SRPMS</span><br><span class="line">    └── tengine-2.10-2.src.rpm</span><br></pre></td></tr></table></figure></p>
-<p>如此，RPM便制作OK，可以添加到私有repo中(暂时关闭掉gpg校验)，或者直接使用rpm方式安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$rpm -ivh tengine-2-10-2.aarch64.rpm</span><br></pre></td></tr></table></figure></p>
-<p> 补充：<br> 查看spec文件已定义的一些宏，可以搜索文件<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$cat /usr/lib/rpm/macro</span><br></pre></td></tr></table></figure></p>
+            <p>Hello,everynoe.</p>
+<p>I have made an image based Fedora 22 for arndale octa board.</p>
+<p>Offical arndale octa board just provides the linaro ubuntu linux release , but i’m more familiar RHEL/Fedora/CentOS series,,so i take some time to port the fedora 22 to this board, and it works very good.</p>
+<p>The image file is very easy to use,and supposes that you use the linux/mac osx ,you just insert your tf card, open the terminal and input follow commands:</p>
+<p><code>dd if=Fedora22-arndale-octa-1G.img of=/dev/sdX bs=1M</code></p>
+<p>when it dones,poll out the tf card and insert it to the board,boot it and it will work ok .Maybe you should upgrade the kernel and dtb files because the new 4.1-rc8 kernel is more efficient and good.please command follow:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/mmcblk1p2 /media</span><br><span class="line">cp uImage /media/</span><br><span class="line">cp board.dtb /media/</span><br></pre></td></tr></table></figure>
+<p>Besides:</p>
+<ol>
+<li><a href="https://pan.baidu.com/s/1o6215xg" target="_blank" rel="noopener">Fedora22-arndale-octa-1G.img</a> </li>
+<li><a href="https://pan.baidu.com/s/1jG1U3tW" target="_blank" rel="noopener">uImage</a></li>
+<li><a href="https://pan.baidu.com/s/1jGAHWX4" target="_blank" rel="noopener">board.dtb</a></li>
+</ol>
 
           
         
@@ -1925,6 +2111,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1965,7 +2155,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1980,7 +2170,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1995,7 +2187,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
