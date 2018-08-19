@@ -2,6 +2,9 @@
 title: PC创建并使用aarch64虚拟机
 date: 2018-08-19 14:32:42
 tags:
+- aarch64
+categories:
+- aarch64
 ---
 
 ### 如果不想从头自己做虚拟机，可使用这个镜像

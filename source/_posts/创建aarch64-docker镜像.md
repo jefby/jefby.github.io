@@ -1,7 +1,10 @@
 ---
 title: 创建aarch64 docker
 date: 2018-08-19 13:10:29
-tags:
+tags: 
+- aarch64
+categories:
+- aarch64
 ---
 
 在官方的docker image中没有centos的image，所以我想自己做一个
