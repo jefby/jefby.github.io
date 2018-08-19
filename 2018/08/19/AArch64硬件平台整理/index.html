@@ -108,31 +108,25 @@
 
 
 
-  <meta name="description" content="如果不想从头自己做虚拟机，可使用这个镜像链接: https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w 密码: 2123使用方法：参考第4步，直接启动就可以，用户名和密码都是jefby  大部分人电脑都是x86_64，但有时候我们需要开发运行在arm64设备的程序，这时候arm64虚拟机就非常有用了，如下是详细步骤 qemu-system-arm直接用apt">
+  <meta name="description" content="ARM发布ARM v8架构，主要针对高性能企业级市场，由于ARM系列芯片的高度可定制和低功耗特性，众多小伙伴看到了服务器市场的希望，纷纷跟上，积极推进ARM进军传统服务器领域，虽然目前跟Intel相比还是太弱，但我相信肯定会打出一片天地，ARM授权SoC IP核心，企业可以根据具体应用需求来定制芯片，另外可以加入特定的硬件逻辑，例如SSL安全验证等，这些都是Intel所不能比得，就是生态系统目前还">
 <meta name="keywords" content="aarch64">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PC创建并使用aarch64虚拟机">
-<meta property="og:url" content="http://yoursite.com/2018/08/19/PC创建并使用aarch64虚拟机/index.html">
+<meta property="og:title" content="AArch64硬件平台整理">
+<meta property="og:url" content="http://yoursite.com/2018/08/19/AArch64硬件平台整理/index.html">
 <meta property="og:site_name" content="jefby的小窝">
-<meta property="og:description" content="如果不想从头自己做虚拟机，可使用这个镜像链接: https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w 密码: 2123使用方法：参考第4步，直接启动就可以，用户名和密码都是jefby  大部分人电脑都是x86_64，但有时候我们需要开发运行在arm64设备的程序，这时候arm64虚拟机就非常有用了，如下是详细步骤 qemu-system-arm直接用apt">
+<meta property="og:description" content="ARM发布ARM v8架构，主要针对高性能企业级市场，由于ARM系列芯片的高度可定制和低功耗特性，众多小伙伴看到了服务器市场的希望，纷纷跟上，积极推进ARM进军传统服务器领域，虽然目前跟Intel相比还是太弱，但我相信肯定会打出一片天地，ARM授权SoC IP核心，企业可以根据具体应用需求来定制芯片，另外可以加入特定的硬件逻辑，例如SSL安全验证等，这些都是Intel所不能比得，就是生态系统目前还">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/19/Pfv3h8.md.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/19/PfvM7t.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/19/PfvlAP.md.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/19/PfvcjJ.md.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/19/Pfv2u9.md.png">
-<meta property="og:updated_time" content="2018-08-19T12:56:16.807Z">
+<meta property="og:updated_time" content="2018-08-19T14:16:57.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PC创建并使用aarch64虚拟机">
-<meta name="twitter:description" content="如果不想从头自己做虚拟机，可使用这个镜像链接: https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w 密码: 2123使用方法：参考第4步，直接启动就可以，用户名和密码都是jefby  大部分人电脑都是x86_64，但有时候我们需要开发运行在arm64设备的程序，这时候arm64虚拟机就非常有用了，如下是详细步骤 qemu-system-arm直接用apt">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/08/19/Pfv3h8.md.png">
+<meta name="twitter:title" content="AArch64硬件平台整理">
+<meta name="twitter:description" content="ARM发布ARM v8架构，主要针对高性能企业级市场，由于ARM系列芯片的高度可定制和低功耗特性，众多小伙伴看到了服务器市场的希望，纷纷跟上，积极推进ARM进军传统服务器领域，虽然目前跟Intel相比还是太弱，但我相信肯定会打出一片天地，ARM授权SoC IP核心，企业可以根据具体应用需求来定制芯片，另外可以加入特定的硬件逻辑，例如SSL安全验证等，这些都是Intel所不能比得，就是生态系统目前还">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/19/PC创建并使用aarch64虚拟机/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/19/AArch64硬件平台整理/"/>
 
 
 
@@ -142,7 +136,7 @@
   };
 </script>
 
-  <title>PC创建并使用aarch64虚拟机 | jefby的小窝</title>
+  <title>AArch64硬件平台整理 | jefby的小窝</title>
   
 
 
@@ -311,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/PC创建并使用aarch64虚拟机/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/AArch64硬件平台整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jefby">
@@ -328,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PC创建并使用aarch64虚拟机
+          <h1 class="post-title" itemprop="name headline">AArch64硬件平台整理
               
             
           </h1>
@@ -353,7 +347,7 @@
                 
               
 
-              <time title="创建时间：2018-08-19 14:32:42 / 修改时间：20:56:16" itemprop="dateCreated datePublished" datetime="2018-08-19T14:32:42+08:00">2018-08-19</time>
+              <time title="创建时间：2018-08-19 21:06:40 / 修改时间：22:16:57" itemprop="dateCreated datePublished" datetime="2018-08-19T21:06:40+08:00">2018-08-19</time>
             
 
             
@@ -409,26 +403,17 @@
       
 
       
-        <p><strong>如果不想从头自己做虚拟机，可使用这个镜像<br>链接: <a href="https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w" target="_blank" rel="noopener">https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w</a> 密码: 2123<br>使用方法：<br>参考第4步，直接启动就可以，用户名和密码都是jefby</strong></p>
-<hr>
-<p>大部分人电脑都是x86_64，但有时候我们需要开发运行在arm64设备的程序，这时候arm64虚拟机就非常有用了，如下是详细步骤</p>
-<h4 id="qemu-system-arm"><a href="#qemu-system-arm" class="headerlink" title="qemu-system-arm"></a>qemu-system-arm</h4><p>直接用apt安装 <code>sudo apt install -y qemu-system-arm</code><br>或者是从源码安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.qemu.org/qemu-2.12.1.tar.bz2</span><br><span class="line">tar -xjvf qemu-2.12.1.tar.bz2</span><br><span class="line">cd qemu-2.12.1/</span><br><span class="line">./configure –-target-list=aarch64-softmmu</span><br><span class="line">make -j16</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>源码安装需要注意，创建/etc/qemu-ifup文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh </span><br><span class="line">/sbin/ifconfig $1 192.168.0.1</span><br></pre></td></tr></table></figure></p>
-<p>完成后增加执行权限<br><code>chmod +x /etc/qemu-ifup</code></p>
-<h4 id="下载ubuntuarm64-iso"><a href="#下载ubuntuarm64-iso" class="headerlink" title="下载ubuntuarm64.iso"></a>下载ubuntuarm64.iso</h4><p><a href="http://cdimage.ubuntu.com/releases/16.04/release/" target="_blank" rel="noopener">http://cdimage.ubuntu.com/releases/16.04/release/</a></p>
-<p>创建40G大小的镜像，格式为qcow2，相比raw有个优势，比如同样创建40G的镜像，qcow2格式的size是真正使用的size而不是40G</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-img create -f qcow2  ubuntu16.04-arm64.qcow2 40G</span><br></pre></td></tr></table></figure>
-<p><a href="https://imgchr.com/i/Pfv3h8" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/Pfv3h8.md.png" alt="Pfv3h8.md.png"></a></p>
-<h4 id="创建虚拟机ubuntu16-04-arm64-qcow2并安装ubuntu16-04-5系统"><a href="#创建虚拟机ubuntu16-04-arm64-qcow2并安装ubuntu16-04-5系统" class="headerlink" title="创建虚拟机ubuntu16.04-arm64.qcow2并安装ubuntu16.04.5系统"></a>创建虚拟机ubuntu16.04-arm64.qcow2并安装ubuntu16.04.5系统</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-aarch64 -m 2048-cpu cortex-a57 -smp 2 -M virt -bios QEMU_EFI.fd -nographic -drive if=none,file=ubuntu-16.04.5-server-arm64.iso,id=cdrom,media=cdrom -device virtio-scsi-device -device scsi-cd,drive=cdrom -drive if=none,file=ubuntu16.04-arm64.qcow2,id=hd0 -device virtio-blk-device,drive=hd0</span><br></pre></td></tr></table></figure>
-<p><img src="https://s1.ax1x.com/2018/08/19/PfvM7t.png" alt="PfvM7t.png"><br><strong>注意选择OpenSSH Server</strong><br>理论上如果顺利的话会自动出现登录界面，进入后如下<br><a href="https://imgchr.com/i/PfvlAP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PfvlAP.md.png" alt="PfvlAP.md.png"></a></p>
-<h4 id="关机后重新启动命令"><a href="#关机后重新启动命令" class="headerlink" title="关机后重新启动命令"></a>关机后重新启动命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-aarch64 -m 2048 -cpu cortex-a57 -smp 2 -M virt -bios QEMU_EFI.fd -nographic -device virtio-scsi-device -drive if=none,file=ubuntu16.04-arm64.qcow2,id=hd0 -device virtio-blk-device,drive=hd0  -netdev type=tap,id=net0 -device virtio-net-device,netdev=net0</span><br></pre></td></tr></table></figure>
-<h4 id="关于UEFI启动后第一项无法自动进入ubuntu解决方法"><a href="#关于UEFI启动后第一项无法自动进入ubuntu解决方法" class="headerlink" title="关于UEFI启动后第一项无法自动进入ubuntu解决方法"></a>关于UEFI启动后第一项无法自动进入ubuntu解决方法</h4><p>进入UEFI 界面，在uefi shell中输入exit后在Boot Maintenance Manager进入Boot Options，选择Add Boot Option 依次选择boot/efi/ubuntu/grubaa64.efi，并设置boot order，将添加的boot option放在第一个<br><a href="https://imgchr.com/i/PfvcjJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PfvcjJ.md.png" alt="PfvcjJ.md.png"></a><br><a href="https://imgchr.com/i/Pfv2u9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/Pfv2u9.md.png" alt="Pfv2u9.md.png"></a></p>
-<h4 id="设置网络"><a href="#设置网络" class="headerlink" title="设置网络"></a>设置网络</h4><p>Host:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig tun0 192.168.0.1</span><br></pre></td></tr></table></figure>
-<p>Virtual machine:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig eth0 up</span><br><span class="line">sudo ifconfig eth0 192.168.0.2</span><br></pre></td></tr></table></figure>
-<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><p>在主机端ssh <a href="mailto:user-name@192.168.0.2" target="_blank" rel="noopener">user-name@192.168.0.2</a>输入密码即可登录</p>
-<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="https://blog.csdn.net/chenxiangneu/article/details/78955462" target="_blank" rel="noopener">https://blog.csdn.net/chenxiangneu/article/details/78955462</a></p>
+        <p>ARM发布ARM v8架构，主要针对高性能企业级市场，由于ARM系列芯片的高度可定制和低功耗特性，众多小伙伴看到了服务器市场的希望，纷纷跟上，积极推进ARM进军传统服务器领域，虽然目前跟Intel相比还是太弱，但我相信肯定会打出一片天地，ARM授权SoC IP核心，企业可以根据具体应用需求来定制芯片，另外可以加入特定的硬件逻辑，例如SSL安全验证等，这些都是Intel所不能比得，就是生态系统目前还未完全建立，需要各个厂商的通力协作。现整理部分AArch64硬件平台，以方便自己和需要的人做参考，有新的设备欢迎提醒哈！</p>
+<h4 id="1-versatile-express（FPGA-soft-core）"><a href="#1-versatile-express（FPGA-soft-core）" class="headerlink" title="1. versatile-express（FPGA soft-core）"></a>1. versatile-express（FPGA soft-core）</h4><p>ARM公司推出的示范平台，用于验证</p>
+<h4 id="2-Applied-Micro-Mustang"><a href="#2-Applied-Micro-Mustang" class="headerlink" title="2. Applied Micro Mustang:"></a>2. Applied Micro Mustang:</h4><p>8核ArmV8架构，最早的arm64硬件平台，目前已经可以安装Linaro Ubuntu、Fedora、OpenSUSE等系统，软件支持做的比较好，bootloader也替换为UEFI，而非嵌入式常用的uboot。<br><a href="https://www.apm.com/products/data-center/x-gene-family/x-c1-development-kits/" target="_blank" rel="noopener">https://www.apm.com/products/data-center/x-gene-family/x-c1-development-kits/</a></p>
+<h4 id="3-ARM-Juno"><a href="#3-ARM-Juno" class="headerlink" title="3. ARM Juno"></a>3. ARM Juno</h4><p><a href="http://www.arm.com/zh/products/tools/development-boards/versatile-express/juno-arm-development-platform.php" target="_blank" rel="noopener">http://www.arm.com/zh/products/tools/development-boards/versatile-express/juno-arm-development-platform.php</a></p>
+<h4 id="4-Qemu"><a href="#4-Qemu" class="headerlink" title="4. Qemu"></a>4. Qemu</h4><p>软件模拟硬件平台，<a href="http://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/" target="_blank" rel="noopener">http://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/</a></p>
+<h4 id="5-AMD-64-bit-ARM-Opteron-Developer-Kit"><a href="#5-AMD-64-bit-ARM-Opteron-Developer-Kit" class="headerlink" title="5. AMD 64-bit ARM Opteron Developer Kit"></a>5. AMD 64-bit ARM Opteron Developer Kit</h4><p>AMD的ARM64服务器平台</p>
+<h4 id="6-Cavium-Project-ThunderX-48核心-amp-amp-EZchip"><a href="#6-Cavium-Project-ThunderX-48核心-amp-amp-EZchip" class="headerlink" title="6. Cavium Project ThunderX:(48核心) &amp;&amp; EZchip"></a>6. Cavium Project ThunderX:(48核心) &amp;&amp; EZchip</h4><p>战斗机，<a href="https://www.youtube.com/watch?v=zmnjZUQPq5U" target="_blank" rel="noopener">https://www.youtube.com/watch?v=zmnjZUQPq5U</a><br>100个ARM 64核心，详细资料可查看网址<a href="http://www.ezchip.com/products/?ezchip=585&amp;spage=686" target="_blank" rel="noopener">http://www.ezchip.com/products/?ezchip=585&amp;spage=686</a></p>
+<h4 id="7-96Board"><a href="#7-96Board" class="headerlink" title="7. 96Board"></a>7. 96Board</h4><p>(1)HiKey : 8核心Cortex-A53，华为麒麟6220,<br><a href="https://www.96boards.org/products/hikey/" target="_blank" rel="noopener">https://www.96boards.org/products/hikey/</a><br>(2)DragonBoard410c，4核心Cortex-A53<br><a href="https://www.96boards.org/products/dragonboard/" target="_blank" rel="noopener">https://www.96boards.org/products/dragonboard/</a><br>(3)听说AMD也会推出一款面向企业级别的参考设计版，但是价格相对低廉些~</p>
+<h4 id="8-华为平台"><a href="#8-华为平台" class="headerlink" title="8. 华为平台"></a>8. 华为平台</h4><p>D-01和D-02，产品不错，技术领先<br><a href="https://www.youtube.com/watch?v=dLHhnLLw4Fw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=dLHhnLLw4Fw</a></p>
+<h4 id="9-Nvidia-平台"><a href="#9-Nvidia-平台" class="headerlink" title="9. Nvidia 平台"></a>9. Nvidia 平台</h4><p>面向机器识别、人工智能和无人机图形处理运算方面的<br><a href="http://devblogs.nvidia.com/parallelforall/nvidia-jetson-tx1-supercomputer-on-module-drives-next-wave-of-autonomous-machines/" target="_blank" rel="noopener">http://devblogs.nvidia.com/parallelforall/nvidia-jetson-tx1-supercomputer-on-module-drives-next-wave-of-autonomous-machines/</a></p>
+<p>购买链接：<br><a href="http://www.nvidia.com/object/jetson-tx1-dev-kit.html" target="_blank" rel="noopener">http://www.nvidia.com/object/jetson-tx1-dev-kit.html</a><br>最新版是TX2，有cuda加速，但CPU架构感觉有点老，怎么还是cortex-a57?：<br><a href="https://developer.nvidia.com/embedded/buy/jetson-tx2" target="_blank" rel="noopener">https://developer.nvidia.com/embedded/buy/jetson-tx2</a></p>
 
       
     </div>
@@ -462,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/25/在aarch64中使用Qemu启动虚拟机/" rel="next" title="在aarch64主机中使用Qemu启动虚拟机">
-                <i class="fa fa-chevron-left"></i> 在aarch64主机中使用Qemu启动虚拟机
+              <a href="/2018/08/19/PC创建并使用aarch64虚拟机/" rel="next" title="PC创建并使用aarch64虚拟机">
+                <i class="fa fa-chevron-left"></i> PC创建并使用aarch64虚拟机
               </a>
             
           </div>
@@ -471,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/19/AArch64硬件平台整理/" rel="prev" title="AArch64硬件平台整理">
-                AArch64硬件平台整理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#qemu-system-arm"><span class="nav-number">1.</span> <span class="nav-text">qemu-system-arm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载ubuntuarm64-iso"><span class="nav-number">2.</span> <span class="nav-text">下载ubuntuarm64.iso</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建虚拟机ubuntu16-04-arm64-qcow2并安装ubuntu16-04-5系统"><span class="nav-number">3.</span> <span class="nav-text">创建虚拟机ubuntu16.04-arm64.qcow2并安装ubuntu16.04.5系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关机后重新启动命令"><span class="nav-number">4.</span> <span class="nav-text">关机后重新启动命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于UEFI启动后第一项无法自动进入ubuntu解决方法"><span class="nav-number">5.</span> <span class="nav-text">关于UEFI启动后第一项无法自动进入ubuntu解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置网络"><span class="nav-number">6.</span> <span class="nav-text">设置网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录"><span class="nav-number">7.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文章"><span class="nav-number">8.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-versatile-express（FPGA-soft-core）"><span class="nav-number">1.</span> <span class="nav-text">1. versatile-express（FPGA soft-core）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Applied-Micro-Mustang"><span class="nav-number">2.</span> <span class="nav-text">2. Applied Micro Mustang:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-ARM-Juno"><span class="nav-number">3.</span> <span class="nav-text">3. ARM Juno</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Qemu"><span class="nav-number">4.</span> <span class="nav-text">4. Qemu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-AMD-64-bit-ARM-Opteron-Developer-Kit"><span class="nav-number">5.</span> <span class="nav-text">5. AMD 64-bit ARM Opteron Developer Kit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Cavium-Project-ThunderX-48核心-amp-amp-EZchip"><span class="nav-number">6.</span> <span class="nav-text">6. Cavium Project ThunderX:(48核心) &amp;&amp; EZchip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-96Board"><span class="nav-number">7.</span> <span class="nav-text">7. 96Board</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-华为平台"><span class="nav-number">8.</span> <span class="nav-text">8. 华为平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-Nvidia-平台"><span class="nav-number">9.</span> <span class="nav-text">9. Nvidia 平台</span></a></li></ol></div>
             
 
           </div>

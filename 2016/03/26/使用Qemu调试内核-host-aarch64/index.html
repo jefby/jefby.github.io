@@ -108,24 +108,28 @@
 
 
 
-  <meta name="description" content="记录点点滴滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="在前一篇文章http://blog.csdn.net/jefbai/article/details/44901447已经介绍过主机为x86_64的情况下如何进行内核调试，但是如果主机换做AArch64呢？？方法类似～ 1、编译qemu-system-aarch64  git clone https://github.com/qemu/qemu./configure &amp;amp;&amp;amp; make">
+<meta name="keywords" content="aarch64">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Qemu调试内核(host=aarch64)">
+<meta property="og:url" content="http://yoursite.com/2016/03/26/使用Qemu调试内核-host-aarch64/index.html">
 <meta property="og:site_name" content="jefby的小窝">
-<meta property="og:description" content="记录点点滴滴">
+<meta property="og:description" content="在前一篇文章http://blog.csdn.net/jefbai/article/details/44901447已经介绍过主机为x86_64的情况下如何进行内核调试，但是如果主机换做AArch64呢？？方法类似～ 1、编译qemu-system-aarch64  git clone https://github.com/qemu/qemu./configure &amp;amp;&amp;amp; make">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-19T12:56:16.810Z">
+<meta property="og:image" content="http://img.blog.csdn.net/20160326204802361">
+<meta property="og:image" content="http://img.blog.csdn.net/20160326205007112">
+<meta property="og:updated_time" content="2018-08-19T14:05:32.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="记录点点滴滴">
+<meta name="twitter:title" content="使用Qemu调试内核(host=aarch64)">
+<meta name="twitter:description" content="在前一篇文章http://blog.csdn.net/jefbai/article/details/44901447已经介绍过主机为x86_64的情况下如何进行内核调试，但是如果主机换做AArch64呢？？方法类似～ 1、编译qemu-system-aarch64  git clone https://github.com/qemu/qemu./configure &amp;amp;&amp;amp; make">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160326204802361">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/03/26/使用Qemu调试内核-host-aarch64/"/>
 
 
 
@@ -135,7 +139,7 @@
   };
 </script>
 
-  <title>categories | jefby的小窝</title>
+  <title>使用Qemu调试内核(host=aarch64) | jefby的小窝</title>
   
 
 
@@ -235,7 +239,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
   </li>
@@ -264,28 +268,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -312,56 +294,207 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/26/使用Qemu调试内核-host-aarch64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">categories</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                
-                
-                  
-                    
-                  
-                
-                目前共计 1 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/aarch64/">aarch64</a><span class="category-list-count">8</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">使用Qemu调试内核(host=aarch64)
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-03-26 20:50:42" itemprop="dateCreated datePublished" datetime="2016-03-26T20:50:42+08:00">2016-03-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-19 22:05:32" itemprop="dateModified" datetime="2018-08-19T22:05:32+08:00">2018-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>在前一篇文章<a href="http://blog.csdn.net/jefbai/article/details/44901447" target="_blank" rel="noopener">http://blog.csdn.net/jefbai/article/details/44901447</a><br>已经介绍过主机为x86_64的情况下如何进行内核调试，但是如果主机换做AArch64呢？？方法类似～</p>
+<p>1、编译qemu-system-aarch64</p>
+<blockquote>
+<p>git clone <a href="https://github.com/qemu/qemu" target="_blank" rel="noopener">https://github.com/qemu/qemu</a><br>./configure &amp;&amp; make -j8 </p>
+</blockquote>
+<p>随后将该目录添加到PATH变量并source ~/.bashrc</p>
+<p>2、 下载并编译内核</p>
+<blockquote>
+<p>git clone <a href="https://git.fedorahosted.org/git/kernel-arm64.git" target="_blank" rel="noopener">https://git.fedorahosted.org/git/kernel-arm64.git</a><br>make -j8 Image </p>
+</blockquote>
+<p>3、安装gdb和gcc-c++<br>4、调试内核（本机，也可以通过网络）<br>qemu-system-aarch64 -machine virt -cpu cortex-a57 -machine       ↪ type=virt -nographic -smp 1 -m 2048 -kernel arch/arm64/boot/   ↪ Image  –append “console=ttyAMA0” -s -S<br>-s表示加入 gdb debug的功能，-S是让kernel停在第一行指令，不要往下跑。（可以写成脚本）<br>cd kernel-arm64<br>gdb ./vmlinux<br>target remote localhost:1234</p>
+<p><img src="http://img.blog.csdn.net/20160326204802361" alt="run first scene"><br>5、此时可以使用gdb进行内核调试了<br>例如</p>
+<blockquote>
+<p>b start_kernel<br>c</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20160326205007112" alt="kernel"></p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/aarch64/" rel="tag"># aarch64</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/08/创建aarch64-docker镜像/" rel="next" title="创建aarch64 docker">
+                <i class="fa fa-chevron-left"></i> 创建aarch64 docker
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/在aarch64中使用Qemu启动虚拟机/" rel="prev" title="在aarch64主机中使用Qemu启动虚拟机">
+                在aarch64主机中使用Qemu启动虚拟机 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 

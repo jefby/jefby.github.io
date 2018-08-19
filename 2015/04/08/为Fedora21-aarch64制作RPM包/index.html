@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文简单记录将tengine-2.10版本源码打为rpm包的步骤，此处是简单的封装了下二进制，没有做复杂的脚本配置和gpg校验等，待以后有时间继续研究。1.安装必要包1$yum install -y gcc pcre-devel openssl-devel 2.创建tengine rpm构建目录，使用非root用户12$su - jefby$mkdir -p tengine_rpm/&amp;#123;B">
+<meta name="keywords" content="aarch64">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为Fedora21 aarch64制作RPM包（tengine） ">
+<meta property="og:url" content="http://yoursite.com/2015/04/08/为Fedora21-aarch64制作RPM包/index.html">
+<meta property="og:site_name" content="jefby的小窝">
+<meta property="og:description" content="本文简单记录将tengine-2.10版本源码打为rpm包的步骤，此处是简单的封装了下二进制，没有做复杂的脚本配置和gpg校验等，待以后有时间继续研究。1.安装必要包1$yum install -y gcc pcre-devel openssl-devel 2.创建tengine rpm构建目录，使用非root用户12$su - jefby$mkdir -p tengine_rpm/&amp;#123;B">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-19T13:19:28.139Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为Fedora21 aarch64制作RPM包（tengine） ">
+<meta name="twitter:description" content="本文简单记录将tengine-2.10版本源码打为rpm包的步骤，此处是简单的封装了下二进制，没有做复杂的脚本配置和gpg校验等，待以后有时间继续研究。1.安装必要包1$yum install -y gcc pcre-devel openssl-devel 2.创建tengine rpm构建目录，使用非root用户12$su - jefby$mkdir -p tengine_rpm/&amp;#123;B">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/04/08/为Fedora21-aarch64制作RPM包/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>为Fedora21 aarch64制作RPM包（tengine）  | jefby的小窝</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jefby的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/04/08/为Fedora21-aarch64制作RPM包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">为Fedora21 aarch64制作RPM包（tengine） 
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-08 10:45:00" itemprop="dateCreated datePublished" datetime="2015-04-08T10:45:00+08:00">2015-04-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-19 21:19:28" itemprop="dateModified" datetime="2018-08-19T21:19:28+08:00">2018-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文简单记录将tengine-2.10版本源码打为rpm包的步骤，此处是简单的封装了下二进制，没有做复杂的脚本配置和gpg校验等，待以后有时间继续研究。<br>1.安装必要包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$yum install -y gcc pcre-devel openssl-devel</span><br></pre></td></tr></table></figure></p>
+<p>2.创建tengine rpm构建目录，使用非root用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$su - jefby</span><br><span class="line">$mkdir -p tengine_rpm/&#123;BUILD,RPMS,SOURCES,SPECS,SRPMS&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3.编写spec文件，将源码放置到SOURCES目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$unzip tengine-master.zip</span><br><span class="line">$mv tengine-master tengine-2.10</span><br><span class="line">$tar -cjvf tengine-2.10.tar.bz2 tengine-2.10</span><br><span class="line">$mv tengine-2.10.tar.bz2 SOURCES</span><br><span class="line">$vi SPECS/tengine.spec</span><br></pre></td></tr></table></figure></p>
+<p>tengine.spec文件详细内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"># This is a sample spec file for tengine</span><br><span class="line"></span><br><span class="line">%define _topdir         /home/jefby/tengine_rpm</span><br><span class="line">%define name            tengine</span><br><span class="line">%define release         2</span><br><span class="line">%define version         2.10</span><br><span class="line">%define buildroot       %&#123;_topdir&#125;/%&#123;name&#125;-%&#123;version&#125;-root</span><br><span class="line"></span><br><span class="line">BuildRoot:              %&#123;buildroot&#125;</span><br><span class="line">Summary:                TAOBAO Tengine</span><br><span class="line">License:                GPL</span><br><span class="line">Name:                   %&#123;name&#125;</span><br><span class="line">Version:                %&#123;version&#125;</span><br><span class="line">Release:                %&#123;release&#125;</span><br><span class="line">Source:                 %&#123;name&#125;-%&#123;version&#125;.tar.bz2</span><br><span class="line">Prefix:                 /usr/local</span><br><span class="line">Group:                  Development/Tools</span><br><span class="line">BuildRequires:          gcc,make</span><br><span class="line">Requires:               pcre,pcre-devel,openssl,openssl-devel,chkconfig &gt;= 1.1.1</span><br><span class="line"></span><br><span class="line">%description</span><br><span class="line">Tengine is the webserver based nginx for taobao website</span><br><span class="line"></span><br><span class="line">%prep #编译前准备，主要是解压缩源码，并进入压缩后的目录</span><br><span class="line">%setup -q</span><br><span class="line"></span><br><span class="line">%build #编译</span><br><span class="line">./configure --prefix=/opt/nginx</span><br><span class="line">make %&#123;?_smp_mflags&#125; #检查处理器核心数目，若为多核则使用多核编译</span><br><span class="line"></span><br><span class="line">%install #安装，如果不设置DESTDIR，默认安装到prefix指定的目录</span><br><span class="line">rm -rf %&#123;buildroot&#125;</span><br><span class="line">make install DESTDIR=%&#123;buildroot&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#%post  #rpm安装后执行的脚本</span><br><span class="line"></span><br><span class="line">#%preun #卸载前执行的脚本</span><br><span class="line"></span><br><span class="line">#%postun #卸载后执行的脚本</span><br><span class="line"></span><br><span class="line">%clean #清理，检查buildroot是否为根目录，如果不是直接删除</span><br><span class="line">[ %&#123;buildroot&#125; != &apos;/&apos; ] &amp;&amp; rm -rf %&#123;buildroot&#125;</span><br><span class="line"></span><br><span class="line">%files #打包到rpm的文件，因为prefix指定为/opt/nginx，此时将整个文件夹打包</span><br><span class="line">/opt/nginx</span><br><span class="line">%defattr(-,root,root)#设置属性</span><br></pre></td></tr></table></figure></p>
+<p>目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$tree .</span><br><span class="line">├── BUILD</span><br><span class="line">├── RPMS</span><br><span class="line">├── SOURCES</span><br><span class="line">│   └── tengine-2.10.tar.bz2</span><br><span class="line">├── SPECS</span><br><span class="line">│   └── tengine.spec</span><br><span class="line">└── SRPMS</span><br></pre></td></tr></table></figure></p>
+<p>说明：<br>    BUILD    源代码解压后的存放目录<br>    RPMS    制作完成后的RPM包存放目录，里面有与平台相关的子目录<br>    SOURCES 软件源码及补丁<br>    SPECS   SPEC文件存放目录<br>    SRMPS   存放SRMPS生成的目录<br>4.编译制作rpm包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$rpmbuild -v -ba --clean SPEC/tengine.spec</span><br><span class="line">其中-v表示Verbose，输出详细信息</span><br><span class="line">-bb：构建二进制RPM包</span><br><span class="line">-ba：构建二进制RPM和源码src.RPM包</span><br><span class="line">-bp：运行到pre结束</span><br><span class="line">-bc：执行到build结束</span><br><span class="line">-bi：运行到install结束</span><br><span class="line">-bl：检查有文件没包含</span><br><span class="line">一般使用bb或者ba</span><br><span class="line">--clean：</span><br><span class="line">Remove the build tree after the packages are made.</span><br></pre></td></tr></table></figure></p>
+<p>成功会在RPMS目录下生成<br>tengine-xxx.rpm和tengine-debuginfo-xxx.rpm包，在SRPMS目录下生成src.rpm包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├── BUILD</span><br><span class="line">├── RPMS</span><br><span class="line">│   └── aarch64</span><br><span class="line">│       ├── tengine-2.10-2.aarch64.rpm</span><br><span class="line">│       └── tengine-debuginfo-2.10-2.aarch64.rpm</span><br><span class="line">├── SOURCES</span><br><span class="line">│   └── tengine-2.10.tar.bz2</span><br><span class="line">├── SPECS</span><br><span class="line">│   └── tengine.spec</span><br><span class="line">└── SRPMS</span><br><span class="line">    └── tengine-2.10-2.src.rpm</span><br></pre></td></tr></table></figure></p>
+<p>如此，RPM便制作OK，可以添加到私有repo中(暂时关闭掉gpg校验)，或者直接使用rpm方式安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$rpm -ivh tengine-2-10-2.aarch64.rpm</span><br></pre></td></tr></table></figure></p>
+<p> 补充：<br> 查看spec文件已定义的一些宏，可以搜索文件<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$cat /usr/lib/rpm/macro</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/aarch64/" rel="tag"># aarch64</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/29/AArch64简介/" rel="prev" title="AArch64简介">
+                AArch64简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">jefby</p>
+              <p class="site-description motion-element" itemprop="description">记录点点滴滴</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jefby</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
