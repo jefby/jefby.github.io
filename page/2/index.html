@@ -304,6 +304,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/19/Fedora22-for-arndale-octa-board/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/19/Fedora22-for-arndale-octa-board/" itemprop="url">
+                  Fedora22 image for arndale octa board
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-07-19 12:03:00" itemprop="dateCreated datePublished" datetime="2015-07-19T12:03:00+08:00">2015-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Hello,everynoe.</p>
+<p>I have made an image based Fedora 22 for arndale octa board.</p>
+<p>Offical arndale octa board just provides the linaro ubuntu linux release , but i’m more familiar RHEL/Fedora/CentOS series,,so i take some time to port the fedora 22 to this board, and it works very good.</p>
+<p>The image file is very easy to use,and supposes that you use the linux/mac osx ,you just insert your tf card, open the terminal and input follow commands:</p>
+<p><code>dd if=Fedora22-arndale-octa-1G.img of=/dev/sdX bs=1M</code></p>
+<p>when it dones,poll out the tf card and insert it to the board,boot it and it will work ok .Maybe you should upgrade the kernel and dtb files because the new 4.1-rc8 kernel is more efficient and good.please command follow:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/mmcblk1p2 /media</span><br><span class="line">cp uImage /media/</span><br><span class="line">cp board.dtb /media/</span><br></pre></td></tr></table></figure>
+<p>Besides:</p>
+<ol>
+<li><a href="https://pan.baidu.com/s/1o6215xg" target="_blank" rel="noopener">Fedora22-arndale-octa-1G.img</a> </li>
+<li><a href="https://pan.baidu.com/s/1jG1U3tW" target="_blank" rel="noopener">uImage</a></li>
+<li><a href="https://pan.baidu.com/s/1jGAHWX4" target="_blank" rel="noopener">board.dtb</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/04/08/为Fedora21-aarch64制作RPM包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +549,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:10:16" itemprop="dateModified" datetime="2018-08-20T00:10:16+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
               
             
           </span>
@@ -545,7 +727,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:10:16" itemprop="dateModified" datetime="2018-08-20T00:10:16+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
               
             
           </span>
@@ -732,7 +914,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:10:16" itemprop="dateModified" datetime="2018-08-20T00:10:16+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
               
             
           </span>
@@ -916,7 +1098,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:10:16" itemprop="dateModified" datetime="2018-08-20T00:10:16+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
               
             
           </span>
@@ -1112,7 +1294,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:10:16" itemprop="dateModified" datetime="2018-08-20T00:10:16+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
               
             
           </span>
@@ -1295,7 +1477,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:10:16" itemprop="dateModified" datetime="2018-08-20T00:10:16+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
               
             
           </span>
@@ -1477,7 +1659,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:10:16" itemprop="dateModified" datetime="2018-08-20T00:10:16+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
               
             
           </span>
@@ -1634,7 +1816,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1651,7 +1833,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1674,7 +1858,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
