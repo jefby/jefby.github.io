@@ -1,7 +1,10 @@
 ---
 title: 'Applied Micro Mustang 支持kvm '
 date: 2015-11-06 20:16:39
-
+tags:
+- aarch64
+categories:
+- aarch64
 ---
 
 在mustang机器上安装了Centos7，并升级内核到4.1.0-0.rc2
