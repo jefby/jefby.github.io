@@ -11,6 +11,7 @@ author: jefby
 language: zh-CN
 timezone:
 
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
@@ -79,3 +80,17 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+# Social links
+social:
+  GitHub: https://github.com/jefby/ || github
+  Twitter: https://twitter.com/jefby_plus || Twitter
+
+social_icons:
+  enable: true
+  # Icon Mappings.
+  # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
+  GitHub: github
+  Twitter: twitter
+  icons_only : false
+  transition: false
