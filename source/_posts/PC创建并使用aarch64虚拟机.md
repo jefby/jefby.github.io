@@ -7,10 +7,10 @@ categories:
 - aarch64
 ---
 
-### 如果不想从头自己做虚拟机，可使用这个镜像
+**如果不想从头自己做虚拟机，可使用这个镜像
 链接: https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w 密码: 2123
 使用方法：
-参考第4步，直接启动就可以，用户名和密码都是jefby
+参考第4步，直接启动就可以，用户名和密码都是jefby**
 
 ----------
 
@@ -89,3 +89,4 @@ sudo ifconfig eth0 192.168.0.2
 
 #### 参考文章
 https://blog.csdn.net/chenxiangneu/article/details/78955462
+
