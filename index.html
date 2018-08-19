@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="记录点点滴滴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="jefby的小窝">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="jefby的小窝">
+<meta property="og:description" content="记录点点滴滴">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jefby的小窝">
+<meta name="twitter:description" content="记录点点滴滴">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>jefby的小窝</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jefby的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/PC创建并使用aarch64虚拟机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/PC创建并使用aarch64虚拟机/" itemprop="url">
+                  PC创建并使用aarch64虚拟机
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-19 14:32:42 / 修改时间：14:39:27" itemprop="dateCreated datePublished" datetime="2018-08-19T14:32:42+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="如果不想从头自己做虚拟机，可使用这个镜像"><a href="#如果不想从头自己做虚拟机，可使用这个镜像" class="headerlink" title="如果不想从头自己做虚拟机，可使用这个镜像"></a>如果不想从头自己做虚拟机，可使用这个镜像</h3><p>链接: <a href="https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w" target="_blank" rel="noopener">https://pan.baidu.com/s/1aQikk7nZWlvXn2EZIn_M3w</a> 密码: 2123<br>使用方法：<br>参考第4步，直接启动就可以，用户名和密码都是jefby</p>
+<hr>
+<p>大部分人电脑都是x86_64，但有时候我们需要开发运行在arm64设备的程序，这时候arm64虚拟机就非常有用了，如下是详细步骤</p>
+<h4 id="1-qemu-system-arm"><a href="#1-qemu-system-arm" class="headerlink" title="1. qemu-system-arm"></a>1. qemu-system-arm</h4><p>直接用apt安装 <code>sudo apt install -y qemu-system-arm</code><br>或者是从源码安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.qemu.org/qemu-2.12.1.tar.bz2</span><br><span class="line">tar -xjvf qemu-2.12.1.tar.bz2</span><br><span class="line">cd qemu-2.12.1/</span><br><span class="line">./configure –-target-list=aarch64-softmmu</span><br><span class="line">make -j16</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>源码安装需要注意，创建/etc/qemu-ifup文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh </span><br><span class="line">/sbin/ifconfig $1 192.168.0.1</span><br></pre></td></tr></table></figure></p>
+<p>完成后增加执行权限<br><code>chmod +x /etc/qemu-ifup</code></p>
+<h4 id="2-下载ubuntuarm64-iso"><a href="#2-下载ubuntuarm64-iso" class="headerlink" title="2. 下载ubuntuarm64.iso"></a>2. 下载ubuntuarm64.iso</h4><p><a href="http://cdimage.ubuntu.com/releases/16.04/release/" target="_blank" rel="noopener">http://cdimage.ubuntu.com/releases/16.04/release/</a></p>
+<p>创建40G大小的镜像，格式为qcow2，相比raw有个优势，比如同样创建40G的镜像，qcow2格式的size是真正使用的size而不是40G<br><a href="https://imgchr.com/i/Pfv3h8" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/Pfv3h8.md.png" alt="Pfv3h8.md.png"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-img create -f qcow2  ubuntu16.04-arm64.qcow2 40G</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-创建虚拟机ubuntu16-04-arm64-qcow2并安装ubuntu16-04-5系统"><a href="#3-创建虚拟机ubuntu16-04-arm64-qcow2并安装ubuntu16-04-5系统" class="headerlink" title="3. 创建虚拟机ubuntu16.04-arm64.qcow2并安装ubuntu16.04.5系统"></a>3. 创建虚拟机ubuntu16.04-arm64.qcow2并安装ubuntu16.04.5系统</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-aarch64 -m 2048-cpu cortex-a57 -smp 2 -M virt -bios QEMU_EFI.fd -nographic -drive if=none,file=ubuntu-16.04.5-server-arm64.iso,id=cdrom,media=cdrom -device virtio-scsi-device -device scsi-cd,drive=cdrom -drive if=none,file=ubuntu16.04-arm64.qcow2,id=hd0 -device virtio-blk-device,drive=hd0</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/08/19/PfvM7t.png" alt="PfvM7t.png"><br><strong>注意选择OpenSSH Server</strong><br>理论上如果顺利的话会自动出现登录界面，进入后如下<br><a href="https://imgchr.com/i/PfvlAP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PfvlAP.md.png" alt="PfvlAP.md.png"></a></p>
+<h4 id="4-关机后重新启动命令"><a href="#4-关机后重新启动命令" class="headerlink" title="4. 关机后重新启动命令"></a>4. 关机后重新启动命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-aarch64 -m 2048 -cpu cortex-a57 -smp 2 -M virt -bios QEMU_EFI.fd -nographic -device virtio-scsi-device -drive if=none,file=ubuntu16.04-arm64.qcow2,id=hd0 -device virtio-blk-device,drive=hd0  -netdev type=tap,id=net0 -device virtio-net-device,netdev=net0</span><br></pre></td></tr></table></figure>
+<h4 id="5-关于UEFI启动后第一项无法自动进入ubuntu解决方法"><a href="#5-关于UEFI启动后第一项无法自动进入ubuntu解决方法" class="headerlink" title="5. 关于UEFI启动后第一项无法自动进入ubuntu解决方法"></a>5. 关于UEFI启动后第一项无法自动进入ubuntu解决方法</h4><p>进入UEFI 界面，在uefi shell中输入exit后在Boot Maintenance Manager进入Boot Options，选择Add Boot Option 依次选择boot/efi/ubuntu/grubaa64.efi，并设置boot order，将添加的boot option放在第一个<br><a href="https://imgchr.com/i/PfvcjJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PfvcjJ.md.png" alt="PfvcjJ.md.png"></a><br><a href="https://imgchr.com/i/Pfv2u9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/Pfv2u9.md.png" alt="Pfv2u9.md.png"></a></p>
+<h4 id="6-设置网络"><a href="#6-设置网络" class="headerlink" title="6. 设置网络"></a>6. 设置网络</h4><p>Host :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig tun0 192.168.0.1</span><br></pre></td></tr></table></figure>
+<p>Virtual machine:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig eth0 up</span><br><span class="line">sudo ifconfig eth0 192.168.0.2</span><br></pre></td></tr></table></figure>
+<h4 id="7-登录"><a href="#7-登录" class="headerlink" title="7. 登录"></a>7. 登录</h4><p>在主机端ssh <a href="mailto:user-name@192.168.0.2" target="_blank" rel="noopener">user-name@192.168.0.2</a>输入密码即可登录</p>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="https://blog.csdn.net/chenxiangneu/article/details/78955462" target="_blank" rel="noopener">https://blog.csdn.net/chenxiangneu/article/details/78955462</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/创建aarch64-docker镜像/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/创建aarch64-docker镜像/" itemprop="url">
+                  创建aarch64 docker
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-19 13:10:29 / 修改时间：14:28:35" itemprop="dateCreated datePublished" datetime="2018-08-19T13:10:29+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在官方的docker image中没有centos的image，所以我想自己做一个<br>参考资料：<br><a href="https://wiki.centos.org/zh/Cloud/Docker" target="_blank" rel="noopener">https://wiki.centos.org/zh/Cloud/Docker</a></p>
+<h4 id="1-拷贝ami-creator代码库"><a href="#1-拷贝ami-creator代码库" class="headerlink" title="1. 拷贝ami-creator代码库"></a>1. 拷贝ami-creator代码库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [https://github.com/katzj/ami-creator](https://github.com/katzj/ami-creator)</span><br></pre></td></tr></table></figure>
+<h4 id="2-编译安装ami-creator"><a href="#2-编译安装ami-creator" class="headerlink" title="2. 编译安装ami-creator"></a>2. 编译安装ami-creator</h4><p>执行命令python setup.py build，发现提示以下错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#python setup.py build</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">File &quot;setup.py&quot;, line 21, in &lt;module&gt;</span><br><span class="line">from ez_setup import use_setuptools</span><br><span class="line">ImportError: No module named ez_setup</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/ez_setup.py</span><br><span class="line">python ez_setup.py</span><br><span class="line">cp ez_setup.py /usr/lib/python2.7/site-packages/</span><br><span class="line"><span class="built_in">cd</span> ami-creator/</span><br><span class="line">python setup.py build</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
+<p>此时运行ami-creator –help还是出现异常，提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ImportError: No module named imgcreate</span><br></pre></td></tr></table></figure></p>
+<p>应该是缺少imgcreate文件？？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y python-imgcreate</span><br></pre></td></tr></table></figure></p>
+<p>但是目前python-imgcreate不支持aarch64架构，所以需要添加patch，修改/usr/lib/python2.7/site-packages/imgcreate/live.py内容如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">elif arch.startswith(&apos;arm&apos;):</span><br><span class="line">  LiveImageCreator = LiveImageCreatorBase</span><br><span class="line">elif arch.startswith(&apos;aarch64&apos;):</span><br><span class="line">  LiveImageCreator = LiveImageCreatorBase</span><br><span class="line">else:</span><br><span class="line">  raise CreatorError(&quot;Architecture not supported!&quot;)</span><br></pre></td></tr></table></figure>
+<p>此时ami-creator已经可以使用了，如下图所示：</p>
+<p><a href="https://imgchr.com/i/PfXgGF" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PfXgGF.md.png" alt="PfXgGF.md.png"></a></p>
+<h4 id="3-克隆代码库sig-cloud-instance-build，并编译出image"><a href="#3-克隆代码库sig-cloud-instance-build，并编译出image" class="headerlink" title="3. 克隆代码库sig-cloud-instance-build，并编译出image"></a>3. 克隆代码库sig-cloud-instance-build，并编译出image</h4><p><code>git clone [https://github.com/CentOS/sig-cloud-instance-build</code>，克隆制作docker image的ks文件，这个ks文件相比正常的ks文件，精简了体积，只保持系统到70M左右，果然很牛B<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ami-creater -c centos7-arm64.ks//如果顺利会生成centos7-arm64-xxxx.img</span><br><span class="line">img2tar.sh centos7-arm64-xxxx.img//会在/tmp目录下生成一个tar.bz2的文件</span><br><span class="line">docker import /tmp/centos7-arm64-xxxx.img.tar.bz2 jefby/centos-arm64</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-docker制作"><a href="#4-docker制作" class="headerlink" title="4. docker制作"></a>4. docker制作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libguestfs-tools</span><br><span class="line">docker import centos-7-arm64.img.tar.bz2 jefby/centos-arm64</span><br><span class="line">docker run -i -t jefby/centos-arm64 /bin/bash //获取到进入系统后的xxxx-id，或者使用docker ps -l方法找到image的xxxx-id</span><br><span class="line">docker commit -m &quot;init for centos arm64 images&quot; -a &quot;jefby&quot; xxxx-id//保存container的修改到image</span><br><span class="line">docker push jefby/centos-arm64//推送新的image</span><br><span class="line">由于v1.8.0和v1.8.1之间可能有一些API发生了改变，所以需要重新编译docker </span><br><span class="line">git remote add docker https://github.com/docker/docker/</span><br><span class="line">git pull docker</span><br><span class="line">git co v1.8.1</span><br><span class="line">cd docker</span><br><span class="line">./hack/make.sh dynbinary</span><br><span class="line">设置环境变量将心编译的docker放到前面去：</span><br><span class="line">export PATH=new-docker-path:$PATH</span><br><span class="line">docker --version查看版本</span><br></pre></td></tr></table></figure>
+<p>继续 <code>docker push jefby/centos-arm64</code>将工作保存下来</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">jefby</p>
+              <p class="site-description motion-element" itemprop="description">记录点点滴滴</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jefby</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
