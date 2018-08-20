@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="jefby的小窝">
 <meta property="og:description" content="记录点点滴滴">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-19T16:36:18.561Z">
+<meta property="og:updated_time" content="2018-08-20T01:45:49.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tags">
 <meta name="twitter:description" content="记录点点滴滴">
@@ -393,6 +393,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -661,9 +671,30 @@
 
   
 
-
+  
+    <script id="dsq-count-scr" src="https://jefby.github.io.disqus.com/count.js" async></script>
+  
 
   
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/tags/index.html';
+        this.page.identifier = 'tags/index.html';
+        this.page.title = 'tags';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefby.github.io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
 
 
 

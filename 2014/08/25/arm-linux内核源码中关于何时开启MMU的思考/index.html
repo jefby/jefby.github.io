@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="jefby的小窝">
 <meta property="og:description" content="今天再次阅读arm linux内核源码，看MMU启动部分发现了一个问题，就是在常规的enable_mmu和turn_mmu_on部分我没有找到真正使能MMU标志的代码，但是它到底是什么时候将MMU的最低位置1的呢？？怀着这个疑问我在google上搜索了好多，但是对于这个问题的解答都是模凌两可，说的特别含糊，千篇一律，不能让人信服。 __enable_mmu代码如下： 123456789101112">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-19T16:36:18.559Z">
+<meta property="og:updated_time" content="2018-08-20T01:45:49.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="arm linux内核源码中关于何时开启MMU的思考">
 <meta name="twitter:description" content="今天再次阅读arm linux内核源码，看MMU启动部分发现了一个问题，就是在常规的enable_mmu和turn_mmu_on部分我没有找到真正使能MMU标志的代码，但是它到底是什么时候将MMU的最低位置1的呢？？怀着这个疑问我在google上搜索了好多，但是对于这个问题的解答都是模凌两可，说的特别含糊，千篇一律，不能让人信服。 __enable_mmu代码如下： 123456789101112">
@@ -364,7 +364,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 00:36:18" itemprop="dateModified" datetime="2018-08-20T00:36:18+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-20 09:45:49" itemprop="dateModified" datetime="2018-08-20T09:45:49+08:00">2018-08-20</time>
               
             
           </span>
@@ -390,6 +390,18 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -495,6 +507,16 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -765,9 +787,30 @@
 
   
 
-
+  
+    <script id="dsq-count-scr" src="https://jefby.github.io.disqus.com/count.js" async></script>
+  
 
   
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/';
+        this.page.identifier = '2014/08/25/arm-linux内核源码中关于何时开启MMU的思考/';
+        this.page.title = 'arm linux内核源码中关于何时开启MMU的思考';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefby.github.io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
 
 
 
