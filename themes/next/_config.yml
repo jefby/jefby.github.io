@@ -479,7 +479,7 @@ pangu: false
 # Disqus
 disqus:
   enable: true
-  shortname: jefby.github.io
+  shortname: jefby-github-io
   count: true
   lazyload: false
 
