@@ -478,8 +478,8 @@ pangu: false
 
 # Disqus
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: jefby.github.io
   count: true
   lazyload: false
 
