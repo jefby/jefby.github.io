@@ -105,7 +105,7 @@ bazel run --config=opt tensorflow/contrib/lite/toco:toco -- \
 
 #### 4.1）更新模型和配置文件
 	
-	`cp /tmp/tflite/detect.tflite tensorflow/contrib/lite/examples/android/app/src/main/assets`
+`cp /tmp/tflite/detect.tflite tensorflow/contrib/lite/examples/android/app/src/main/assets`
 
 编辑tensorflow/contrib/lite/examples/android/BUILD，增加新的detect.tflite和color_pen_label.txt
 
@@ -151,9 +151,9 @@ tensorflow/contrib/lite/examples/android/app/src/main/java/org/tensorflow/demo/D
 
 如果是量化模型的话，按如下修改源码
 
+```diff
 @@ -50,9 +50,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
-```
    // Configuration values for the prepackaged SSD model.
    private static final int TF_OD_API_INPUT_SIZE = 300;
    private static final String TF_OD_API_MODEL_FILE = "detect.tflite";
