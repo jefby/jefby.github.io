@@ -29,11 +29,11 @@ categories:
 	cd tensorflow
 	git checkout r1.10
 	```
-	
+
+
 	设置编译android demo需要的ndk
-	
 	进入tensorflow源码根目录，修改WORKSPACE增加如下行
-	
+
 	```
 	android_sdk_repository(
 	   name = "androidsdk",
@@ -41,7 +41,7 @@ categories:
 	   build_tools_version = "27.0.2",
 	   path = "/Users/xxxx/Library/Android/sdk",
 	)
-	
+
 	# Android NDK r12b is recommended (higher may cause issues with Bazel)
 	android_ndk_repository(
 	   name="androidndk",
@@ -49,6 +49,8 @@ categories:
 	   api_level=21
 	) 
 	```
+
+
 
 	
 ### 2.生成tflite兼容的pb graph
@@ -67,41 +69,37 @@ export OUTPUT_DIR=/tmp/tflite
 python object_detection/export_tflite_ssd_graph.py --pipeline_config_path $CONFIG_FILE  --trained_checkpoint_prefix $CHECKPOINT_PATH --output_directory /tmp/tflite/ --add_postprocessing_op=true
 ```
 
-#### 2.3）
-
 ### 3.通过TOCO获取优化后的模型
 
-	TOCO: TensorFlow Lite Optimizing Converter
+TOCO: TensorFlow Lite Optimizing Converter
 
 #### 3.1）如果想要整型[这块暂时没调通]
 
 ```
-	bazel run --config=opt tensorflow/contrib/lite/toco:toco -- \
-	--input_file=$OUTPUT_DIR/tflite_graph.pb \
-	--output_file=$OUTPUT_DIR/detect.tflite \
-	--input_shapes=1,300,300,3 \
-	--input_arrays=normalized_input_image_tensor \
-	--output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3' \
-	--inference_type=QUANTIZED_UINT8 \
-	--mean_values=128 \
-	--std_values=128 \
-	--change_concat_input_ranges=false \
-	--allow_custom_ops
+bazel run --config=opt tensorflow/contrib/lite/toco:toco -- \
+--input_file=$OUTPUT_DIR/tflite_graph.pb \
+--output_file=$OUTPUT_DIR/detect.tflite \
+--input_shapes=1,300,300,3 \
+--input_arrays=normalized_input_image_tensor \
+--output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3' \
+--inference_type=QUANTIZED_UINT8 \
+--mean_values=128 \
+--std_values=128 \
+--change_concat_input_ranges=false \
+--allow_custom_ops
 ```
-
 #### 3.2）如果想要浮点类型
 
 ```
-	bazel run --config=opt tensorflow/contrib/lite/toco:toco -- \
-	--input_file=$OUTPUT_DIR/tflite_graph.pb \
-	--output_file=$OUTPUT_DIR/detect.tflite \
-	--input_shapes=1,300,300,3 \
-	--input_arrays=normalized_input_image_tensor \
-	--output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3'  \
-	--inference_type=FLOAT \
-	--allow_custom_ops
+bazel run --config=opt tensorflow/contrib/lite/toco:toco -- \
+--input_file=$OUTPUT_DIR/tflite_graph.pb \
+--output_file=$OUTPUT_DIR/detect.tflite \
+--input_shapes=1,300,300,3 \
+--input_arrays=normalized_input_image_tensor \
+--output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3'  \
+--inference_type=FLOAT \
+--allow_custom_ops
 ```
-
 
 ### 4. 集成到Android Studio工程中
 
