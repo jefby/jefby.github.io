@@ -22,7 +22,7 @@ categories:
 	export PYTHONPATH=$PYTHONPATH:xxxxxx/tensorflow-models/research:xxxx/tensorflow-models/research/slim
 	```
 	
-* 下载tensorflow源码
+* 下载tensorflow源码和android ndk r16b
 
 	```
 	https://github.com/tensorflow/tensorflow
@@ -30,8 +30,30 @@ categories:
 	git checkout r1.10
 	```
 	
-### 2.设置变量
+	设置编译android demo需要的ndk
+	
+	进入tensorflow源码根目录，修改WORKSPACE增加如下行
+	
+	```
+	android_sdk_repository(
+	   name = "androidsdk",
+	   api_level = 27,
+	   build_tools_version = "27.0.2",
+	   path = "/Users/xxxx/Library/Android/sdk",
+	)
+	
+	# Android NDK r12b is recommended (higher may cause issues with Bazel)
+	android_ndk_repository(
+	   name="androidndk",
+	   path="/Users/xxxx/Library/Android/sdk/android-ndk-r16b",
+	   api_level=21
+	) 
+	```
 
+	
+### 2.生成tflite兼容的pb graph
+
+#### 2.1) 设置变量
 ```
 ROOT_PATH=xxxxx/tensorflow/pretrained_models
 export CONFIG_FILE=${ROOT_PATH}/pipeline.config
@@ -39,12 +61,13 @@ export CHECKPOINT_PATH=${ROOT_PATH}/model.ckpt
 export OUTPUT_DIR=/tmp/tflite
 ```
 
-### 根据pb、checkpoint、pipeline.config等生成frozen graph
+#### 2.2) 根据pb、checkpoint、pipeline.config等生成frozen graph
 
 ```
 python object_detection/export_tflite_ssd_graph.py --pipeline_config_path $CONFIG_FILE  --trained_checkpoint_prefix $CHECKPOINT_PATH --output_directory /tmp/tflite/ --add_postprocessing_op=true
 ```
 
+#### 2.3）
 
 ### 3.通过TOCO获取优化后的模型
 
