@@ -1,8 +1,9 @@
 ---
-title: XILINX学习笔记之三------RS232串口通讯设计
+title: XILINX学习笔记之三---RS232串口通讯设计
 date: 2012-11-11 02:06:24
 tags:
 - FPGA
+- Xilinx
 categories:
 - FPGA
 ---

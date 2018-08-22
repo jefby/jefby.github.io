@@ -1,8 +1,11 @@
 ---
-title: XILINX学习笔记之二------数码管的动态显示
+title: XILINX学习笔记之二---数码管的动态显示
 date: 2012-10-23 23:47:48
-tags: FPGA
-categories: FPGA
+tags: 
+- FPGA
+- Xilinx
+categories: 
+- FPGA
 ---
 
 下图左为笔者所用的数码管的原理图，为8段共阴极数码管，4位位选信号，
