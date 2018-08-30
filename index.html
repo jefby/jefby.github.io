@@ -304,6 +304,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/Tensorflow-Lite-C-动态库编译-Android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/30/Tensorflow-Lite-C-动态库编译-Android/" itemprop="url">
+                  Tensorflow Lite C++动态库编译[Android]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-30 16:22:50 / 修改时间：16:57:14" itemprop="dateCreated datePublished" datetime="2018-08-30T16:22:50+08:00">2018-08-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/30/Tensorflow-Lite-C-动态库编译-Android/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/30/Tensorflow-Lite-C-动态库编译-Android/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在Android的jni中使用tflite c++ API做推理，以下是记录：</p>
+<ul>
+<li>进入tensorflow源码根目录，修改WORKSPACE增加如下内容：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">android_sdk_repository(</span><br><span class="line">   name = &quot;androidsdk&quot;,</span><br><span class="line">   api_level = 27,</span><br><span class="line">   build_tools_version = &quot;27.0.2&quot;,</span><br><span class="line">   path = &quot;/Users/jefby/Library/Android/sdk&quot;,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># Android NDK r12b is recommended (higher may cause issues with Bazel)</span><br><span class="line">android_ndk_repository(</span><br><span class="line">   name=&quot;androidndk&quot;,</span><br><span class="line">#   path=&quot;/Users/xxx/Library/Android/sdk/android-ndk-r16b&quot;,</span><br><span class="line">   path=&quot;/Users/xxx/Library/Android/sdk/ndk-bundle&quot;,</span><br><span class="line">   api_level=21</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在tensorflow/contrib/lite/BUILD中增加如下内容，用于生成libtensorflowLite.so</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cc_binary(</span><br><span class="line">    name = &quot;libtensorflowLite.so&quot;,</span><br><span class="line">    linkopts = [&quot;-shared&quot;, &quot;-Wl,-soname=libtensorflowLite.so&quot;],</span><br><span class="line">    visibility = [&quot;//visibility:public&quot;],</span><br><span class="line">    linkshared = 1,</span><br><span class="line">    copts = tflite_copts(),</span><br><span class="line">    deps = [</span><br><span class="line">        &quot;:framework&quot;,</span><br><span class="line">        &quot;//tensorflow/contrib/lite/kernels:builtin_ops&quot;,</span><br><span class="line">    ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译，根据APP_ABI可自行设置为armeabi-v7a或者arm64-v8a</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># build for armeabi-v7a</span><br><span class="line">bazel build -c opt //tensorflow/contrib/lite:libtensorflowLite.so   --crosstool_top=//external:android/crosstool --cpu=armeabi-v7a --host_crosstool_top=@bazel_tools//tools/cpp:toolchain --cxxopt=&quot;-std=c++11&quot; --verbose_failures</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># build for arm64-v8a</span><br><span class="line">bazel build -c opt //tensorflow/contrib/lite:libtensorflowLite.so   --crosstool_top=//external:android/crosstool --cpu=arm64-v8a --host_crosstool_top=@bazel_tools//tools/cpp:toolchain --cxxopt=&quot;-std=c++11&quot; --verbose_failures</span><br></pre></td></tr></table></figure>
+<p>发现提示如下错误：</p>
+<blockquote>
+<p>jni_src/jni/src/utils/xxxxTFLite.cpp:41: error: undefined reference to ‘tflite::InterpreterBuilder::operator()(std::<strong>ndk1::unique_ptr&lt;tflite::Interpreter, std::</strong>ndk1::default_delete<a href="tflite::Interpreter" target="_blank" rel="noopener">tflite::Interpreter</a> &gt;*)’</p>
+</blockquote>
+<p>原因是ndk-r16b有问题，使用android studio自带的r17 ndk编译</p>
+<p>重新编译会生成文件 <code>bazel-bin/tensorflow/contrib/lite/libtensorflowLite.so</code></p>
+<p>这个就是我们需要的动态库，可以通过Android.mk、Application.mk集成到Android工程中使用</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/将mobilenet-ssd-tensorflow-pb转换为tflite的详细步骤/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +556,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -581,7 +770,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -773,7 +962,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -974,7 +1163,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -1168,7 +1357,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -1368,7 +1557,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -1565,7 +1754,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -1760,7 +1949,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -1952,7 +2141,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
+                <time title="修改时间：2018-08-30 16:22:42" itemprop="dateModified" datetime="2018-08-30T16:22:42+08:00">2018-08-30</time>
               
             
           </span>
@@ -2067,229 +2256,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/08/29/AArch64简介/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jefby">
-      <meta itemprop="description" content="记录点点滴滴">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jefby的小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/08/29/AArch64简介/" itemprop="url">
-                  AArch64简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-08-29 10:10:44" itemprop="dateCreated datePublished" datetime="2015-08-29T10:10:44+08:00">2015-08-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-22 22:50:16" itemprop="dateModified" datetime="2018-08-22T22:50:16+08:00">2018-08-22</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/08/29/AArch64简介/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/08/29/AArch64简介/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="about-aarch64"><a href="#about-aarch64" class="headerlink" title="about aarch64"></a>about aarch64</h1><ol>
-<li>Focus on high performance </li>
-<li>Exception levels instead of different modes</li>
-<li>virtualisation support built-in</li>
-<li>32 bit fixed length instruction </li>
-<li>more registers</li>
-<li>divide instruction</li>
-<li>compare &amp; jump instruction</li>
-<li>support for aarch32</li>
-</ol>
-<h2 id="difference-towards-aarch32"><a href="#difference-towards-aarch32" class="headerlink" title="difference towards aarch32"></a>difference towards aarch32</h2><ol>
-<li>no thumb mode</li>
-<li>only a handful conditionally executing instruction</li>
-<li>no more coprocessor</li>
-<li>beware PC relative addressing doesn’t have an offset anymore</li>
-<li>31 general purpose registers.1 special purpose</li>
-<li>no store/load multiple registers(only pairs)</li>
-</ol>
-<h2 id="aarch64-registers"><a href="#aarch64-registers" class="headerlink" title="aarch64 registers"></a>aarch64 registers</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">registers	special	description</span><br><span class="line">SP/ZR				Stack pointor/Zero register</span><br><span class="line">30			LR		Link register</span><br><span class="line">29			FP		Frame pointer</span><br><span class="line">19~28				stored/restored by callee</span><br><span class="line">18					platforem specific register</span><br><span class="line">17					inter procedure call 1</span><br><span class="line">16					inter procedure call 2</span><br><span class="line">9~15				scratch registers</span><br><span class="line">8					indirect result(pointer to sturct)</span><br><span class="line">0~7					parameters &amp; results</span><br></pre></td></tr></table></figure>
-<h3 id="registers-can-be-accessed-as-32-64-bit"><a href="#registers-can-be-accessed-as-32-64-bit" class="headerlink" title="registers can be accessed as 32/64 bit"></a>registers can be accessed as 32/64 bit</h3><p>X0~30 for 64 bit<br>W0~30 for 32 bit<br>Also available<br>V0~31,SIMD floating point registers</p>
-<h3 id="Modes-AArch32"><a href="#Modes-AArch32" class="headerlink" title="Modes AArch32"></a>Modes AArch32</h3><p>User        Application<br>FIQ            Fast Interrupt<br>IRQ            Interrupt<br>Supervisor     Operating System<br>Abort         Prefetch abort of instructiion/data<br>Undefined    After undefined instruction<br>System        Privileged user mode (for OS functions)<br>Monitor        On TrustZone Platforms</p>
-<h3 id="Modes-on-Aarch64"><a href="#Modes-on-Aarch64" class="headerlink" title="Modes on Aarch64"></a>Modes on Aarch64</h3><p>EL0            Unprivileged,applications(with task protection,etc)<br>EL1            Operating system,kernel,etc<br>EL2            Hypervisor(for virtualisation)<br>EL3            Secure monitor(for switching to/from secure state)</p>
-<blockquote>
-<p>svc,hvc,smc指令切换，对EL1~3有三种不同的中断向量，客户端可以生产virtual exceptions</p>
-</blockquote>
-<p><em>CP15 is no more</em></p>
-<blockquote>
-<p>Cache,address and TLB management now have dedicated instructions</p>
-</blockquote>
-<blockquote>
-<p>Memory management</p>
-</blockquote>
-<blockquote>
-<p>Execpt for EL0,all exception levels have their own memory translation </p>
-</blockquote>
-<blockquote>
-<p>context(EL0 is managed by EL1)</p>
-</blockquote>
-<blockquote>
-<p>This means up to 3 stage translation depending on the context</p>
-</blockquote>
-<h2 id="UEFI-amp-ACPI"><a href="#UEFI-amp-ACPI" class="headerlink" title="UEFI&amp;ACPI"></a>UEFI&amp;ACPI</h2><p><a href="http://www.uefi.org/sites/default/files/resources/S4_BldgARMServers_UEFILinuxCon_FINAL_Aug.%2021.pdf" target="_blank" rel="noopener">http://www.uefi.org/sites/default/files/resources/S4_BldgARMServers_UEFILinuxCon_FINAL_Aug.%2021.pdf</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2337,7 +2303,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2389,7 +2355,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
