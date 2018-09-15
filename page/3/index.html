@@ -304,6 +304,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2012/12/07/XILINX学习笔记之七-VGA显示原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/12/07/XILINX学习笔记之七-VGA显示原理/" itemprop="url">
+                  XILINX学习笔记之七---VGA显示原理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2012-12-07 22:03:03" itemprop="dateCreated datePublished" datetime="2012-12-07T22:03:03+08:00">2012-12-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2012/12/07/XILINX学习笔记之七-VGA显示原理/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2012/12/07/XILINX学习笔记之七-VGA显示原理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>VGA(Video Graphic Array)，视频图像阵列，是在20世纪80年代末由IBM PC中引入的视频显示标准，现在已经在PC显示器中得到了推广。图1所示为Spartan-3E上的VGA 显示接口。</p>
+<p><a href="https://imgchr.com/i/PTagYT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/22/PTagYT.md.png" alt="PTagYT.md.png"></a>                                                         <center>图1</center></p>
+<p><img src="https://s1.ax1x.com/2018/08/22/PTackV.png" alt="PTackV.png"></p>
+<center>图2</center>
+
+
+<p>图2所示为DB15接口图，主要有5个信号比较重要，即水平、垂直两大同步信号，3基色信号（红、绿、蓝），spartan-3e中用3bit来表示每一个像素，故显示效果不好。最古老的显示器要属CRT显示器，它的全称为((cathode ray tube)阴极射线管.图3所示为640×480的CRT显示时序图。</p>
+<p><a href="https://imgchr.com/i/PTayT0" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/22/PTayT0.md.png" alt="PTayT0.md.png"></a></p>
+<center>图3</center>
+
+
+<p>如图3所示，VGA控制器生成水平和垂直同步时序信号，并且协调每一像素周期的视频数据传输。像素周期定义了能够显示一个像素信息的时间。vs信号定义了显示器的刷新频率，或者显示设备中的所有信息需要重画的频率。一般刷新频率范围是60HZ~120HZ。</p>
+<p>如果需要在显示设备上显示一幅图片，则可以根据图3设置相应的计数器，产生出水平和垂直扫描信号，并将图片信息保存在ROM中，然后从ROM中读入缓冲区，不停的刷新即可。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2012/11/30/XILINX学习笔记之六-PS2键盘接口设计之二（实现了从键盘输入并显示在LCD液晶屏上）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +561,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-07 23:40:44" itemprop="dateModified" datetime="2018-09-07T23:40:44+08:00">2018-09-07</time>
+                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
               
             
           </span>
@@ -554,7 +748,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-07 23:40:44" itemprop="dateModified" datetime="2018-09-07T23:40:44+08:00">2018-09-07</time>
+                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
               
             
           </span>
@@ -750,7 +944,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-07 23:40:44" itemprop="dateModified" datetime="2018-09-07T23:40:44+08:00">2018-09-07</time>
+                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
               
             
           </span>
@@ -962,7 +1156,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-07 23:40:44" itemprop="dateModified" datetime="2018-09-07T23:40:44+08:00">2018-09-07</time>
+                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
               
             
           </span>
@@ -1153,7 +1347,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-07 23:40:44" itemprop="dateModified" datetime="2018-09-07T23:40:44+08:00">2018-09-07</time>
+                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
               
             
           </span>
@@ -1341,7 +1535,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-07 23:40:44" itemprop="dateModified" datetime="2018-09-07T23:40:44+08:00">2018-09-07</time>
+                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
               
             
           </span>
@@ -1503,7 +1697,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1524,7 +1718,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1557,7 +1753,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

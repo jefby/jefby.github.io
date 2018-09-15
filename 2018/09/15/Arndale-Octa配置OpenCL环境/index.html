@@ -108,28 +108,28 @@
 
 
 
-  <meta name="description" content="参考链接：http://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/ 环境说明：Fedora21 x86_64 ARM公司推出ARM V8架构后，全面进入64位CPU时代，可是目前市场上出现的设备太少或者说性价比不高，但是又想做相关平台下的开发，那么可以考虑下使用">
-<meta name="keywords" content="aarch64">
+  <meta name="description" content="最近想要使用OpenCL来加速sift算法，刚好手头有开发板arndale octa，算是物尽其用吧。。。  Linaro14.04 for arndale octa内核默认没有mali驱动，我们需要修改内核并重新编译，如下是具体步骤  1、编译支持mali驱动的内核r4p012git clone https://git.linaro.org/gwg/linaro-lsk.git git chec">
+<meta name="keywords" content="Linux,ARM,Arndale Octa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在PC-Linux下运行Qemu模拟AArch64硬件调试内核">
-<meta property="og:url" content="http://yoursite.com/2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/index.html">
+<meta property="og:title" content="Arndale Octa配置OpenCL环境">
+<meta property="og:url" content="http://yoursite.com/2018/09/15/Arndale-Octa配置OpenCL环境/index.html">
 <meta property="og:site_name" content="jefby的小窝">
-<meta property="og:description" content="参考链接：http://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/ 环境说明：Fedora21 x86_64 ARM公司推出ARM V8架构后，全面进入64位CPU时代，可是目前市场上出现的设备太少或者说性价比不高，但是又想做相关平台下的开发，那么可以考虑下使用">
+<meta property="og:description" content="最近想要使用OpenCL来加速sift算法，刚好手头有开发板arndale octa，算是物尽其用吧。。。  Linaro14.04 for arndale octa内核默认没有mali驱动，我们需要修改内核并重新编译，如下是具体步骤  1、编译支持mali驱动的内核r4p012git clone https://git.linaro.org/gwg/linaro-lsk.git git chec">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.blog.csdn.net/20150406124814496">
-<meta property="og:image" content="http://img.blog.csdn.net/20150406132804121">
-<meta property="og:updated_time" content="2018-09-15T12:47:50.441Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/15/iV34eJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/15/iV8iSf.png">
+<meta property="og:updated_time" content="2018-09-15T13:07:03.219Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在PC-Linux下运行Qemu模拟AArch64硬件调试内核">
-<meta name="twitter:description" content="参考链接：http://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/ 环境说明：Fedora21 x86_64 ARM公司推出ARM V8架构后，全面进入64位CPU时代，可是目前市场上出现的设备太少或者说性价比不高，但是又想做相关平台下的开发，那么可以考虑下使用">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20150406124814496">
+<meta name="twitter:title" content="Arndale Octa配置OpenCL环境">
+<meta name="twitter:description" content="最近想要使用OpenCL来加速sift算法，刚好手头有开发板arndale octa，算是物尽其用吧。。。  Linaro14.04 for arndale octa内核默认没有mali驱动，我们需要修改内核并重新编译，如下是具体步骤  1、编译支持mali驱动的内核r4p012git clone https://git.linaro.org/gwg/linaro-lsk.git git chec">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/15/iV34eJ.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/15/Arndale-Octa配置OpenCL环境/"/>
 
 
 
@@ -139,7 +139,7 @@
   };
 </script>
 
-  <title>在PC-Linux下运行Qemu模拟AArch64硬件调试内核 | jefby的小窝</title>
+  <title>Arndale Octa配置OpenCL环境 | jefby的小窝</title>
   
 
 
@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/15/Arndale-Octa配置OpenCL环境/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jefby">
@@ -325,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">在PC-Linux下运行Qemu模拟AArch64硬件调试内核
+          <h1 class="post-title" itemprop="name headline">Arndale Octa配置OpenCL环境
               
             
           </h1>
@@ -350,24 +350,12 @@
                 
               
 
-              <time title="创建时间：2015-04-06 13:28:22" itemprop="dateCreated datePublished" datetime="2015-04-06T13:28:22+08:00">2015-04-06</time>
+              <time title="创建时间：2018-09-15 20:48:33 / 修改时间：21:07:03" itemprop="dateCreated datePublished" datetime="2018-09-15T20:48:33+08:00">2018-09-15</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-15 20:47:50" itemprop="dateModified" datetime="2018-09-15T20:47:50+08:00">2018-09-15</time>
               
             
           </span>
@@ -384,7 +372,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Arndale-Octa/" itemprop="url" rel="index"><span itemprop="name">Arndale Octa</span></a></span>
 
                 
                 
@@ -399,10 +387,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/#comments" itemprop="discussionUrl">
+                <a href="/2018/09/15/Arndale-Octa配置OpenCL环境/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/09/15/Arndale-Octa配置OpenCL环境/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -430,24 +418,28 @@
       
 
       
-        <p>参考链接：<br><a href="http://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/" target="_blank" rel="noopener">http://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/</a></p>
-<p>环境说明：<br>Fedora21 x86_64</p>
-<p>ARM公司推出ARM V8架构后，全面进入64位CPU时代，可是目前市场上出现的设备太少或者说性价比不高，但是又想做相关平台下的开发，那么可以考虑下使用qemu模拟器</p>
-<p>安装aarch64-qemu：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo yum install -y qemu-system-aarch64</span><br></pre></td></tr></table></figure>
-<p>如果想快速使用模型，可以下载这个镜像：<br><a href="http://people.linaro.org/~alex.bennee/images/aarch64-linux-3.15rc2-buildroot.img" target="_blank" rel="noopener">http://people.linaro.org/~alex.bennee/images/aarch64-linux-3.15rc2-buildroot.img</a><br>然后运行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$qemu-system-aarch64 -machine virt -cpu cortex-a57 -machine type=virt -nographic -smp 1 -m 2048 -kernel aarch64-linux-3.15rc2-buildroot.img  --append &quot;console=ttyAMA0&quot;</span><br></pre></td></tr></table></figure>
-<p>输入root，免密码登陆：<br><img src="http://img.blog.csdn.net/20150406124814496" alt="查看配置"><br>当然还可能需要使用qemu来调试Linux内核，那么需要使用buildroot来构建根文件系统，然后再次配置编译内核，最后启动gdb连接到gdbserver上来进行内核调试和分析：<br>1.下载和编译buildroot<br>(1)下载buildroot，2015-02稳定版<br><a href="http://buildroot.uclibc.org/download.html" target="_blank" rel="noopener">http://buildroot.uclibc.org/download.html</a><br>(2)配置和编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$tar -xjvf buildroot-2015.02.tar.bz2</span><br><span class="line">$cd buildroot-2015.02</span><br><span class="line">$make menuconfig</span><br></pre></td></tr></table></figure>
-<p>选用externel cross-compiler，Linaro 14.09，选择安装路径，然后到Linaro官网下载对应的编译器，不要使用yum来安装对应的编译器，因为红帽公司打包的交叉编译器缺少kernel头文件，我把我的配置文件放到了百度网盘，可以参考：<br><a href="http://pan.baidu.com/s/176ef0" target="_blank" rel="noopener">http://pan.baidu.com/s/176ef0</a><br>Linaro 14.09交叉编译器的链接地址：<br><a href="https://releases.linaro.org/14.09/components/toolchain/binaries" target="_blank" rel="noopener">https://releases.linaro.org/14.09/components/toolchain/binaries</a><br>下载gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2，解压缩到目录/opt/，修改名称并再buildroot中配置路径，然后编译，顺利的话会在目录output/images/生成rootfs.cpio文件，即为根文件系统。<br>(3)下载并配置编译内核<br>到kernel.org下载最新版内核，配置initramfs使用buildroot生成的根文件系统，配置架构和交叉工具，编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ARCH=arm64 make menuconfig</span><br><span class="line">$ARCH=arm64 make -j 8</span><br></pre></td></tr></table></figure>
-<p>参考配置文件：<br><a href="http://pan.baidu.com/s/1i35pWwP" target="_blank" rel="noopener">http://pan.baidu.com/s/1i35pWwP</a><br>成功会在arch/arm64/boot/目录生成Image文件，然后使用以下命令启动：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$qemu-system-aarch64 -machine virt -cpu cortex-a57 -machine type=virt -nographic -smp 1 -m 2048 -kernel /home/jefby/linux-3.19.3/arch/arm64/boot/Image  --append &quot;console=ttyAMA0&quot;</span><br></pre></td></tr></table></figure>
-<p>(4)调试内核</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  qemu-system-aarch64 -s -S -machine virt -cpu cortex-a57 -machine type=virt -nographic -smp 1 -m 2048 -kernel /home/jefby/linux-3.19.3/arch/arm64/boot/Image  --append &quot;console=ttyAMA0&quot;</span><br></pre></td></tr></table></figure>
-<p>此时内核启动，并使用gdbserver打开了1234端口供gdb客户端连接，本地打开terminal，输入以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$cd linux-3.19.3</span><br><span class="line">$aarch64-linux-gnu-gdb</span><br><span class="line">$file vmlinux</span><br><span class="line">$target remote localhost:1234</span><br><span class="line">$b start_kernel</span><br><span class="line">$c</span><br><span class="line">$n</span><br></pre></td></tr></table></figure>
-<p>如图所示：<br><img src="http://img.blog.csdn.net/20150406132804121" alt="这里写图片描述"></p>
+        <p>最近想要使用OpenCL来加速sift算法，刚好手头有开发板arndale octa，算是物尽其用吧。。。</p>
+<blockquote>
+<p>Linaro14.04 for arndale octa内核默认没有mali驱动，我们需要修改内核并重新编译，如下是具体步骤</p>
+</blockquote>
+<h3 id="1、编译支持mali驱动的内核r4p0"><a href="#1、编译支持mali驱动的内核r4p0" class="headerlink" title="1、编译支持mali驱动的内核r4p0"></a>1、编译支持mali驱动的内核r4p0</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://git.linaro.org/gwg/linaro-lsk.git </span><br><span class="line">git checkout lsk-v3.14-lt-mali-r4p0-beta2</span><br></pre></td></tr></table></figure>
+<p>如下是自动化脚本, build.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build on Arndale OCTA board</span></span><br><span class="line"><span class="comment"># Working linaro image for sd card can be found at: http://releases.linaro.org/14.04/ubuntu/arndale-octa</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -x</span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"><span class="comment"># Initial config</span></span><br><span class="line"><span class="comment"># 生成kernel配置</span></span><br><span class="line">./scripts/kconfig/merge_config.sh linaro/configs/linaro-base.conf linaro/configs/distribution.conf linaro/configs/arndale_octa.conf linaro/configs/lt-arndale_octa.conf linaro/configs/mali-arndale-octa.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># build，编译内核</span></span><br><span class="line">MINOR_VERSION=4</span><br><span class="line">make zreladdr-y=0x20008000 LOCALVERSION=  KERNELVERSION=3.14.0-<span class="variable">$&#123;MINOR_VERSION&#125;</span>-linaro-arndale-octa -j4 zImage modules dtbs</span><br><span class="line">sudo make LOCALVERSION=  KERNELVERSION=3.14.0-<span class="variable">$&#123;MINOR_VERSION&#125;</span>-linaro-arndale-octa modules_install</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mount boot partition, prepare for installkernel</span></span><br><span class="line">sudo mount /dev/mmcblk1p2 /media/boot</span><br><span class="line">sudo rm -r /boot/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install kernel</span></span><br><span class="line">kernelversion=`cat ./include/config/kernel.release`</span><br><span class="line">sudo installkernel <span class="variable">$kernelversion</span> ./arch/arm/boot/zImage ./System.map /boot</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install device tree binary</span></span><br><span class="line">sudo cp arch/arm/boot/dts/exynos5420-arndale-octa.dtb /media/boot/board.dtb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reboot</span></span><br><span class="line">sudo sync</span><br><span class="line">sudo umount /media/boot</span><br><span class="line"><span class="comment">#sudo reboot</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"finished"</span></span><br></pre></td></tr></table></figure>
+<p>顺利的话，会输出”finished”，重启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p>查看是否生效，如果正常会类似如下：</p>
+<p><img src="https://s1.ax1x.com/2018/09/15/iV34eJ.png" alt="iV34eJ.png"></p>
+<h3 id="2-下载user-space驱动"><a href="#2-下载user-space驱动" class="headerlink" title="2. 下载user-space驱动"></a>2. 下载user-space驱动</h3><p>Arndale octa使用的是Exynos 5420，GPU为6核心的Mali-T628，官方下载链接如下：</p>
+<p><a href="https://developer.arm.com/products/software/mali-drivers/user-space" target="_blank" rel="noopener">https://developer.arm.com/products/software/mali-drivers/user-space</a></p>
+<p>找到malit62xr4p002rel0linux1fbdevtar.gz，解压缩后拷贝到/usr/lib目录，直接下载地址:</p>
+<p><a href="https://developer.arm.com/-/media/Files/downloads/mali-drivers/user-space/archive/arndale-octa/malit62xr4p002rel0linux1fbdevtar.gz?revision=c1026f2b-1b1f-430a-be17-6e1949c79463" target="_blank" rel="noopener">https://developer.arm.com/-/media/Files/downloads/mali-drivers/user-space/archive/arndale-octa/malit62xr4p002rel0linux1fbdevtar.gz?revision=c1026f2b-1b1f-430a-be17-6e1949c79463
+</a></p>
+<h3 id="3-客户端创建配置mali-icd"><a href="#3-客户端创建配置mali-icd" class="headerlink" title="3. 客户端创建配置mali.icd"></a>3. 客户端创建配置mali.icd</h3><p>创建文件/etc/OpenCL/vendors/mali.icd<br>内容如下：</p>
+<p><code>/usr/lib/libmali.so</code></p>
+<h3 id="4-下载OpenCL-Mali-SDK测试"><a href="#4-下载OpenCL-Mali-SDK测试" class="headerlink" title="4. 下载OpenCL-Mali-SDK测试"></a>4. 下载OpenCL-Mali-SDK测试</h3><p>下载OpenCL-Mali-SDK-1.1，官方已经不再提供了，在github上有之前的备份：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/jefby/Mali_OpenCL_SDK</span><br><span class="line">git checkout 1.1.0</span><br><span class="line">sudo -s</span><br><span class="line"><span class="built_in">cd</span> samples/hello_world_opencl</span><br><span class="line">make</span><br><span class="line">./hello_world_opencl</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src="https://s1.ax1x.com/2018/09/15/iV8iSf.png" alt="iV8iSf.png"></p>
 
       
     </div>
@@ -468,7 +460,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/aarch64/" rel="tag"># aarch64</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/ARM/" rel="tag"># ARM</a>
+          
+            <a href="/tags/Arndale-Octa/" rel="tag"># Arndale Octa</a>
           
         </div>
       
@@ -481,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/25/tftpd服务启动失败问题/" rel="next" title="dnsmasq TFTP directory /tftpd inaccessible: Permission denied">
-                <i class="fa fa-chevron-left"></i> dnsmasq TFTP directory /tftpd inaccessible: Permission denied
+              <a href="/2018/08/30/Tensorflow-Lite-C-动态库编译-Android/" rel="next" title="Tensorflow Lite C++动态库编译[Android]">
+                <i class="fa fa-chevron-left"></i> Tensorflow Lite C++动态库编译[Android]
               </a>
             
           </div>
@@ -490,10 +486,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/04/08/为Fedora21-aarch64制作RPM包/" rel="prev" title="为Fedora21 aarch64制作RPM包（tengine） ">
-                为Fedora21 aarch64制作RPM包（tengine）  <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -664,6 +665,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、编译支持mali驱动的内核r4p0"><span class="nav-number">1.</span> <span class="nav-text">1、编译支持mali驱动的内核r4p0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载user-space驱动"><span class="nav-number">2.</span> <span class="nav-text">2. 下载user-space驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-客户端创建配置mali-icd"><span class="nav-number">3.</span> <span class="nav-text">3. 客户端创建配置mali.icd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-下载OpenCL-Mali-SDK测试"><span class="nav-number">4.</span> <span class="nav-text">4. 下载OpenCL-Mali-SDK测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -815,9 +832,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/';
-        this.page.identifier = '2015/04/06/在PC-Linux下运行Qemu模拟AArch64硬件调试内核/';
-        this.page.title = '在PC-Linux下运行Qemu模拟AArch64硬件调试内核';
+        this.page.url = 'http://yoursite.com/2018/09/15/Arndale-Octa配置OpenCL环境/';
+        this.page.identifier = '2018/09/15/Arndale-Octa配置OpenCL环境/';
+        this.page.title = 'Arndale Octa配置OpenCL环境';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
