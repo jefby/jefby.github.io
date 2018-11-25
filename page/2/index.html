@@ -304,6 +304,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/30/ARM64从源码编译docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jefby">
+      <meta itemprop="description" content="记录点点滴滴">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jefby的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/30/ARM64从源码编译docker/" itemprop="url">
+                  ARM64从源码编译docker（v1.9.1) 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-11-30 20:41:11" itemprop="dateCreated datePublished" datetime="2015-11-30T20:41:11+08:00">2015-11-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/aarch64/" itemprop="url" rel="index"><span itemprop="name">aarch64</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/30/ARM64从源码编译docker/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/11/30/ARM64从源码编译docker/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在X86_64机器fedora系统下，不要使用官方编译的rpm包，交叉编译bootstrap会出现异常，使用源码编译的go.</p>
+</blockquote>
+<h3 id="1-编译X86-64的go-binary"><a href="#1-编译X86-64的go-binary" class="headerlink" title="1.编译X86_64的go binary"></a>1.编译X86_64的go binary</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /root</span><br><span class="line">git clone https://github.com/golang/go</span><br><span class="line">git checkout go1.4.2</span><br><span class="line">cd src/</span><br><span class="line">./make.bash //先编译一个go x86_64</span><br><span class="line">mv /root/go /root/go1.4//因为go1.5beta代码固定了go路径</span><br></pre></td></tr></table></figure>
+<h3 id="2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1"><a href="#2-下载go1-5-1，使用go1-4为arm64交叉编译bootstrap，或者直接checkout-go1-5-1" class="headerlink" title="2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1"></a>2.下载go1.5.1，使用go1.4为arm64交叉编译bootstrap，或者直接checkout go1.5.1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd go/src/</span><br><span class="line">GOOS=linux GOARCH=arm64 ./bootstrap.bash</span><br></pre></td></tr></table></figure>
+<h3 id="3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块"><a href="#3-拷贝go-linux-arm64-bootstrap-tbz到Arm64机器上继续编译其他模块" class="headerlink" title="3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块"></a>3. 拷贝go-linux-arm64-bootstrap.tbz到Arm64机器上继续编译其他模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scp go-linux-arm64-bootstrap.tbz xxx //</span><br><span class="line">//下载go1.5.1代码</span><br><span class="line">git checkout go1.5.1</span><br><span class="line">cd go/src</span><br><span class="line">GOROOT=/path/to/go/bootstrap</span><br><span class="line">GOROOT_BOOTSTRAP=$GOROOT ./all.bash</span><br></pre></td></tr></table></figure>
+<h3 id="4-下载docker源码并编译"><a href="#4-下载docker源码并编译" class="headerlink" title="4. 下载docker源码并编译"></a>4. 下载docker源码并编译</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/jefby/docker.git</span><br><span class="line">git checkout jefby-v1.9.1 //找到最新的v1.9.1版本</span><br><span class="line">AUTO_GOPATH=1 ./hack/make.sh dynbinary //编译动态版本</span><br><span class="line">./hack/make.sh binary //静态版本，根据github docker社区的评论，似乎是用Redhat系列不能用静态版本的，因为默认使用了devicemapper，而不是ubuntu使用的aufs</span><br></pre></td></tr></table></figure>
+<h3 id="5-需要安装glibc-static"><a href="#5-需要安装glibc-static" class="headerlink" title="5. 需要安装glibc-static"></a>5. 需要安装glibc-static</h3><p>在docker v1.9.1版本中，hack/make.sh dynbinary中依然依赖libc.a和libpthread.a库，所以需要安装glibc-static rpm包，提供这两个库~</p>
+<h3 id="6-修改hack-make-sh增加set-x"><a href="#6-修改hack-make-sh增加set-x" class="headerlink" title="6. 修改hack/make.sh增加set -x"></a>6. 修改hack/make.sh增加set -x</h3><p>添加调试选项，进行debug，查看到底是什么地方出现错误</p>
+<h3 id="7-安装必须的一些pkg"><a href="#7-安装必须的一些pkg" class="headerlink" title="7.安装必须的一些pkg"></a>7.安装必须的一些pkg</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y device-mapper-devel</span><br><span class="line">yum install -y btrfs-progs-devel</span><br></pre></td></tr></table></figure>
+<h3 id="8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer"><a href="#8-docker-pull-的时候提示错误Server-error-Status-0-while-fetching-image-layer" class="headerlink" title="8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer"></a>8.docker pull 的时候提示错误Server error: Status 0 while fetching image layer</h3><p>解决方法：<br>在/etc/hosts后面添加对docker网站的dns解析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">162.242.195.84 index.docker.io</span><br><span class="line">162.242.195.84 registry-1.docker.io</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/06/Applied-Micro-Mustang-支持kvm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +559,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -560,7 +752,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -783,7 +975,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -977,7 +1169,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -1167,7 +1359,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -1366,7 +1558,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -1562,7 +1754,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -1770,7 +1962,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -1965,7 +2157,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
+                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
@@ -2081,206 +2273,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/05/21/路由器WNDR3800-OpenWrt刷机记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jefby">
-      <meta itemprop="description" content="记录点点滴滴">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jefby的小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/05/21/路由器WNDR3800-OpenWrt刷机记录/" itemprop="url">
-                  路由器wndr3800 OpenWrt刷写记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2014-05-21 07:29:00" itemprop="dateCreated datePublished" datetime="2014-05-21T07:29:00+08:00">2014-05-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-14 13:16:16" itemprop="dateModified" datetime="2018-10-14T13:16:16+08:00">2018-10-14</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/05/21/路由器WNDR3800-OpenWrt刷机记录/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/05/21/路由器WNDR3800-OpenWrt刷机记录/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对OpenWrt慕名已久，最近有一个想法：实现一个简单的透明翻墙路由器，将校园网共享出来，然后在路由器上运行翻墙代理，实现手机等无线设备的零配置翻墙。网上搜了很多资料，最终决定购买网件的WNDR3800，这台路由器当时配置还可以，但现在看来有点弱，不过相信大品牌的做工和质量。主要的参数如下：</p>
-<blockquote>
-<p>CPU : AR7161,680MHZ<br>RAM: 128M DDR<br>FLASH: 16M</p>
-</blockquote>
-<p>支持双频段：2.4G+5GHZ</p>
-<p>首先是内存大，运行大程序应该无压力，另外是出厂FLASH就是16M，比国内某些路由厂商做的地道多了，可以放置更多的应用程序，同时openwrt系统也支持，适合新手使用。当然，如果老鸟的话可能真的是有点看不上。目前360，小米等鼓吹的AC频段，但似乎很少有设备能支持吧？大部分都是802.11n.</p>
-<p>在淘宝上选了一家价格和评分都不错的店家买了，入手价是269，再加上我用的顺丰快递（+10），总共下来是279，感觉还可以！等熟悉了openwrt后再买一些比较高端的货玩玩哈！^_^。刚开始还想要店家一些技术问题，发现店家似乎也不是很了解，就只好自己先上网搜搜了，幸好对Linux内核和驱动还算有点了解，下载源码，可以使用git或者svn版本控制管理工具，本文使用trunk版本，git的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$git clone git://git.openwrt.org/openwrt.git</span><br></pre></td></tr></table></figure>
-<p>barrier breaker版本命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$git clone git://git.openwrt.org/14.07/openwrt.git</span><br></pre></td></tr></table></figure>
-<p>SVN的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$svn co svn://svn.openwrt.org/openwrt/trunk/</span><br></pre></td></tr></table></figure>
-<p>barrier breaker版本命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$git clone svn://svn.openwrt.org/openwrt/branches/barrier_breaker</span><br></pre></td></tr></table></figure>
-<p>============================2014/12/3update========================</p>
-<p>然后make menuconfig，选择了CPU和路由器WNDR3800，如果需要界面的话进入到LuCI配置下，选择bootstrap风格（个人比较喜欢，很清新），然后选上develop configure模式（不用每次都从零编译），最后保存并退出。配置界面如下图所示：<br><img src="https://s1.ax1x.com/2018/08/19/PhJarD.png" alt="PhJarD.png"></p>
-<p>接着编译，运行命令：</p>
-<p><code>make -j8 V=s</code></p>
-<p>-j8表示启动多少个job（主要参考电脑配置，我电脑是4核的，就设置为8，一般是两倍），顺利的话应该会生成一个bin文件夹，在子目录ar71xx/中会看到openwrt-xxxx-wndr3800.squash.img文件，使用网线连接路由器和电脑，进入管理界面中，刷机，完成后重启，再次打开就是OpenWrt的系统啦！！如下图所示：<br><a href="https://imgchr.com/i/PhJ0VH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/19/PhJ0VH.md.png" alt="PhJ0VH.md.png"></a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2328,7 +2320,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

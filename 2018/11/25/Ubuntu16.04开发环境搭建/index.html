@@ -108,33 +108,29 @@
 
 
 
-  <meta name="description" content="1602为常见的液晶显示设备，本实验所用的规格为16x2字符型驱动，直观图如下所示。 上图为本人已完成的LCD液晶驱动显示效果（可以显示任意字符串），由两行组成，可以显示英文字符，部分日语，也可以显示自定义的图像，Spartan-3E所用的1602 （Sitronix ST7066U graphics controller）与FPGA的接口如下所示： 信号说明：其中SF_D为4位的数据接口位，LC">
-<meta name="keywords" content="FPGA,Xilinx">
+  <meta name="description" content="1. 安装cuda-driverhttps://blog.csdn.net/qq_20492405/article/details/79034430 setting 选择软件和更新，附加驱动  2. 安装cuda-toolkit、cudnn等2.1 cuda-toolkithttps://developer.nvidia.com/cuda-80-ga2-download-archive，使用deb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XILINX学习笔记之四---1602液晶IP核设计">
-<meta property="og:url" content="http://yoursite.com/2012/11/12/XILINX学习笔记之四-1602液晶IP核设计/index.html">
+<meta property="og:title" content="jefby的小窝">
+<meta property="og:url" content="http://yoursite.com/2018/11/25/Ubuntu16.04开发环境搭建/index.html">
 <meta property="og:site_name" content="jefby的小窝">
-<meta property="og:description" content="1602为常见的液晶显示设备，本实验所用的规格为16x2字符型驱动，直观图如下所示。 上图为本人已完成的LCD液晶驱动显示效果（可以显示任意字符串），由两行组成，可以显示英文字符，部分日语，也可以显示自定义的图像，Spartan-3E所用的1602 （Sitronix ST7066U graphics controller）与FPGA的接口如下所示： 信号说明：其中SF_D为4位的数据接口位，LC">
+<meta property="og:description" content="1. 安装cuda-driverhttps://blog.csdn.net/qq_20492405/article/details/79034430 setting 选择软件和更新，附加驱动  2. 安装cuda-toolkit、cudnn等2.1 cuda-toolkithttps://developer.nvidia.com/cuda-80-ga2-download-archive，使用deb">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/22/PTNMtO.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/22/PTNn76.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/22/PTNKAK.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/22/PTNm0x.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/22/PTNen1.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/22/PTNQhD.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/08/22/PTNMtO.png">
-<meta property="og:updated_time" content="2018-11-25T11:46:57.596Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/25/FkHHZd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/25/FkbPds.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/25/FkbWwj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/25/FkbRmQ.png">
+<meta property="og:updated_time" content="2018-11-25T11:57:33.258Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XILINX学习笔记之四---1602液晶IP核设计">
-<meta name="twitter:description" content="1602为常见的液晶显示设备，本实验所用的规格为16x2字符型驱动，直观图如下所示。 上图为本人已完成的LCD液晶驱动显示效果（可以显示任意字符串），由两行组成，可以显示英文字符，部分日语，也可以显示自定义的图像，Spartan-3E所用的1602 （Sitronix ST7066U graphics controller）与FPGA的接口如下所示： 信号说明：其中SF_D为4位的数据接口位，LC">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/08/22/PTNMtO.png">
+<meta name="twitter:title" content="jefby的小窝">
+<meta name="twitter:description" content="1. 安装cuda-driverhttps://blog.csdn.net/qq_20492405/article/details/79034430 setting 选择软件和更新，附加驱动  2. 安装cuda-toolkit、cudnn等2.1 cuda-toolkithttps://developer.nvidia.com/cuda-80-ga2-download-archive，使用deb">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/11/25/FkHHZd.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2012/11/12/XILINX学习笔记之四-1602液晶IP核设计/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/25/Ubuntu16.04开发环境搭建/"/>
 
 
 
@@ -144,7 +140,7 @@
   };
 </script>
 
-  <title>XILINX学习笔记之四---1602液晶IP核设计 | jefby的小窝</title>
+  <title> | jefby的小窝</title>
   
 
 
@@ -313,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2012/11/12/XILINX学习笔记之四-1602液晶IP核设计/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Ubuntu16.04开发环境搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jefby">
@@ -330,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">XILINX学习笔记之四---1602液晶IP核设计
+          <h1 class="post-title" itemprop="name headline">
               
             
           </h1>
@@ -355,46 +351,16 @@
                 
               
 
-              <time title="创建时间：2012-11-12 19:21:34" itemprop="dateCreated datePublished" datetime="2012-11-12T19:21:34+08:00">2012-11-12</time>
+              <time title="创建时间：2018-11-25 19:47:22 / 修改时间：19:57:33" itemprop="dateCreated datePublished" datetime="2018-11-25T19:47:22+08:00">2018-11-25</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-25 19:46:57" itemprop="dateModified" datetime="2018-11-25T19:46:57+08:00">2018-11-25</time>
               
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -404,10 +370,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2012/11/12/XILINX学习笔记之四-1602液晶IP核设计/#comments" itemprop="discussionUrl">
+                <a href="/2018/11/25/Ubuntu16.04开发环境搭建/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2012/11/12/XILINX学习笔记之四-1602液晶IP核设计/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/11/25/Ubuntu16.04开发环境搭建/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -435,37 +401,29 @@
       
 
       
-        <p>1602为常见的液晶显示设备，本实验所用的规格为16x2字符型驱动，直观图如下所示。<br><img src="https://s1.ax1x.com/2018/08/22/PTNMtO.png" alt="PTNMtO.png"></p>
-<p>上图为本人已完成的LCD液晶驱动显示效果（可以显示任意字符串），由两行组成，可以显示英文字符，部分日语，也可以显示自定义的图像，Spartan-3E所用的1602 （Sitronix ST7066U graphics controller）与FPGA的接口如下所示：</p>
-<p>信号说明：<br>其中SF_D为4位的数据接口位，LCD_E为液晶显示或者不显示控制位，LCD_RS为区分控制或数据信号标志位，当LCD_RS = ‘0’时，表示SF_D为控制信号，LCD_RS=’1’此时SF_D为数据位，LCD_RW为读写控制位，因为不需要从LCD液晶屏中读取数据所以可以简单的再复位操作时，将其清零即可。</p>
-<p>可以看出，此1602的数据位为4位，故要写入8位命令时需要进行两次写入操作，写入数据的时序图如下所示，<br><img src="https://s1.ax1x.com/2018/08/22/PTNn76.png" alt="PTNn76.png"><br><img src="https://s1.ax1x.com/2018/08/22/PTNKAK.png" alt="PTNKAK.png"></p>
-<p>红线所画为两个字节数据写入所需的最小时差<font color="#ff0000" size="3">（这个需要特别注意）</font></p>
-<p>根据Spartan-3E的GUIDE，可以知道1602工作的基本流程主要分为上电初始化、写命令、设置读写地址、传递数据三大过程，笔者统计了下这三大步骤中的等待时间最小值和最大值，其中最小值为40us，最大值为15ms，故笔者采取了将50MHZ的时钟分频为10KHZ，即时钟周期为100us的方法来简化设计。</p>
-<p>在Spartan-3E的用户手册上详细讲解了如何对此液晶进行操作，笔者做了简单的摘要：</p>
-<p>一）上电初始化（目的是建立宽度为4 bit的数据接口）</p>
+        <h3 id="1-安装cuda-driver"><a href="#1-安装cuda-driver" class="headerlink" title="1. 安装cuda-driver"></a>1. 安装cuda-driver</h3><p><a href="https://blog.csdn.net/qq_20492405/article/details/79034430" target="_blank" rel="noopener">https://blog.csdn.net/qq_20492405/article/details/79034430</a></p>
+<p>setting 选择软件和更新，附加驱动</p>
+<p><img src="https://s1.ax1x.com/2018/11/25/FkHHZd.png" alt="2018-11-22 17-41-15屏幕截图.png | center | 654x468"></p>
+<h3 id="2-安装cuda-toolkit、cudnn等"><a href="#2-安装cuda-toolkit、cudnn等" class="headerlink" title="2. 安装cuda-toolkit、cudnn等"></a>2. 安装cuda-toolkit、cudnn等</h3><h4 id="2-1-cuda-toolkit"><a href="#2-1-cuda-toolkit" class="headerlink" title="2.1 cuda-toolkit"></a>2.1 cuda-toolkit</h4><p><a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-80-ga2-download-archive</a>，使用deb方式安装，完成后给~/.bashrc增加如下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CUDA_HOME=/usr/<span class="built_in">local</span>/cuda</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$CUDA_HOME</span>/lib64:<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$CUDA_HOME</span>/extras/CUPTI/lib64</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$CUDA_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<p>编译cuda-example</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/cuda/samples</span><br><span class="line">sudo make -j16</span><br><span class="line"><span class="built_in">cd</span> bin/x86_64/linux/release</span><br><span class="line">./deviceQuery</span><br></pre></td></tr></table></figure>
+<p>如下是结果：</p>
+<p><img src="https://s1.ax1x.com/2018/11/25/FkbPds.png" alt="2018-11-22 17-45-56屏幕截图.png | center | 827x476"></p>
+<h4 id="2-2-cudnn"><a href="#2-2-cudnn" class="headerlink" title="2.2 cudnn"></a>2.2 cudnn</h4><p><a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-80-ga2-download-archive</a><br>安装cuda8.0-cudnn-7.1.4 deb，默认会安装到/usr/local<br>检查结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查cudnn版本</span></span><br><span class="line">cat /usr/include/cudnn.h | grep CUDNN_MAJOR -A 2</span><br><span class="line"><span class="comment"># 检查cuda-toolkit版本</span></span><br><span class="line">nvcc --version</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-必需软件安装"><a href="#3-必需软件安装" class="headerlink" title="3. 必需软件安装"></a>3. 必需软件安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># terminal模拟器，相比gnome-terminal支持各种横向切分、纵向切分，使用方便，linux版本的"iTerm"</span></span><br><span class="line">sudo apt install -y terminator</span><br><span class="line"><span class="comment"># Ubuntu默认不开启ssh端口，需要自行安装ssh-server</span></span><br><span class="line">sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
+<p>安装搜狗输入法后设置方法:</p>
 <ul>
-<li>等待15ms或者更长时间</li>
-<li>写命令字0x3,保持LCD_E高电平12个周期（时钟频率为50MHZ时）</li>
-<li>等待4.1ms或者更长时间</li>
-<li>写命令字0x3，保持LCD_E高电平12个周期</li>
-<li>等待100us或者更长时间</li>
-<li>写命令字0x3，保持LCD_E高电平12个周期</li>
-<li>等待40us或者更长时间</li>
-<li>写命令字0x2,保持LCD_E高电平12个周期</li>
-<li>等待40us或者更长时间</li>
+<li>设置=&gt;文本输入 只保留fcitx</li>
 </ul>
-<p>二）写命令</p>
+<p><img src="https://s1.ax1x.com/2018/11/25/FkbWwj.png" alt="2018-11-22 22-57-30屏幕截图.png | center | 827x484"></p>
 <ul>
-<li>发送功能设置命令(Function Set)，0x28</li>
-<li>发送端口模式设置命令(Entry Mode Set)，0x06,自动增加地址指针</li>
-<li>发送Display ON/OFF命令，0x0C，打开显示开关并禁止光标闪烁</li>
-<li>发送Clear Display命令，等待1.64ms或者更长时间</li>
+<li>在全局搜索框中查找fcitx配置,只保留搜狗输入和英语</li>
 </ul>
-<p>三）设置读写地址和传递数据</p>
-<p>指定起始地址，并给出一个或者多个数据，这一步是显示的关键，必须仔细设置控制位，笔者就是因为这个错误，白白花费了大半天的时间，具体方法是在写任何数据之前，发送Set DD RAM Address 命令，<font color="#ff0000" size="3">（写入7位的DD RAM地址，注意最高位为1）</font>然后再写入数据。</p>
-<p>简单介绍我所设计的LCD液晶IP核的思路，首先生成100us的时钟，然后根据初始化顺序，编写状态机。最终设计效果是在1602液晶屏上可以静态显示16*2的任意字符串—而这只需修改两个参数即可轻松实现。下面是部分代码展示。下图为为写16个字符的代码实现<br><img src="https://s1.ax1x.com/2018/08/22/PTNm0x.png" alt="PTNm0x.png"></p>
-<p>下面两图分别为将普通的字符串转换为1602可显示的编码值的模块和生成clk_100us的代码，<br><img src="https://s1.ax1x.com/2018/08/22/PTNen1.png" alt="PTNen1.png"><br><img src="https://s1.ax1x.com/2018/08/22/PTNQhD.png" alt="PTNQhD.png"></p>
-<p>最终效果图是在屏幕上显示两行字符串：<br><img src="https://s1.ax1x.com/2018/08/22/PTNMtO.png" alt="PTNMtO.png"></p>
+<p><img src="https://s1.ax1x.com/2018/11/25/FkbRmQ.png" alt="2018-11-22 22-58-36屏幕截图.png | center | 579x516"></p>
+<h3 id="4-配置VNC远程访问"><a href="#4-配置VNC远程访问" class="headerlink" title="4. 配置VNC远程访问"></a>4. 配置VNC远程访问</h3><p>参考第一步 <a href="https://www.cnblogs.com/xuliangxing/p/7642650.html" target="_blank" rel="noopener">https://www.cnblogs.com/xuliangxing/p/7642650.html</a></p>
+<h3 id="5-Shadowsocks-Qt5"><a href="#5-Shadowsocks-Qt5" class="headerlink" title="5. Shadowsocks-Qt5"></a>5. Shadowsocks-Qt5</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:hzwhuang/ss-qt5</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install shadowsocks-qt5</span><br></pre></td></tr></table></figure>
+<p>完成后使用Chrome，安装Proxy SwitchyOmega插件并配置</p>
 
       
     </div>
@@ -484,14 +442,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/FPGA/" rel="tag"># FPGA</a>
-          
-            <a href="/tags/Xilinx/" rel="tag"># Xilinx</a>
-          
-        </div>
-      
 
       
       
@@ -501,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2012/11/11/XILINX学习笔记之三-RS232串口通讯设计/" rel="next" title="XILINX学习笔记之三---RS232串口通讯设计">
-                <i class="fa fa-chevron-left"></i> XILINX学习笔记之三---RS232串口通讯设计
+              <a href="/2018/09/15/Arndale-Octa配置OpenCL环境/" rel="next" title="Arndale Octa配置OpenCL环境">
+                <i class="fa fa-chevron-left"></i> Arndale Octa配置OpenCL环境
               </a>
             
           </div>
@@ -510,10 +460,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2012/11/29/XILINX学习笔记之六-PS2键盘接口设计/" rel="prev" title="XILINX学习笔记之五---PS2键盘接口设计">
-                XILINX学习笔记之五---PS2键盘接口设计 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -568,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -684,6 +639,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装cuda-driver"><span class="nav-number">1.</span> <span class="nav-text">1. 安装cuda-driver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装cuda-toolkit、cudnn等"><span class="nav-number">2.</span> <span class="nav-text">2. 安装cuda-toolkit、cudnn等</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-cuda-toolkit"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 cuda-toolkit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-cudnn"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 cudnn</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-必需软件安装"><span class="nav-number">3.</span> <span class="nav-text">3. 必需软件安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置VNC远程访问"><span class="nav-number">4.</span> <span class="nav-text">4. 配置VNC远程访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Shadowsocks-Qt5"><span class="nav-number">5.</span> <span class="nav-text">5. Shadowsocks-Qt5</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -835,9 +806,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2012/11/12/XILINX学习笔记之四-1602液晶IP核设计/';
-        this.page.identifier = '2012/11/12/XILINX学习笔记之四-1602液晶IP核设计/';
-        this.page.title = 'XILINX学习笔记之四---1602液晶IP核设计';
+        this.page.url = 'http://yoursite.com/2018/11/25/Ubuntu16.04开发环境搭建/';
+        this.page.identifier = '2018/11/25/Ubuntu16.04开发环境搭建/';
+        this.page.title = '';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
